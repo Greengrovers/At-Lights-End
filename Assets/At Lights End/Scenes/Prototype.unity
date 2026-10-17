@@ -119,6 +119,59 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &98957069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 98957070}
+  - component: {fileID: 98957071}
+  m_Layer: 0
+  m_Name: ObjectInspectionController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &98957070
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98957069}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.15915, y: -1, z: 8.65021}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1182246276}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &98957071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98957069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0f4bc0392966c3429998634e87746d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.ObjectInspectionController
+  inspectionCamera: {fileID: 1182246275}
+  interactionRange: 20
+  raycastLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  minimumInspectionDistance: 1
+  screenFill: 0.65
+  rotationDegreesPerPixel: 0.25
+  pauseDuringInspection: []
 --- !u!1001 &774112773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -174,7 +227,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0a52aee74f567174caaf82bcc16dc8d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1327513792}
   m_SourcePrefab: {fileID: 100100000, guid: 0a52aee74f567174caaf82bcc16dc8d2, type: 3}
 --- !u!4 &774112774 stripped
 Transform:
@@ -190,6 +246,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 953614053}
+  - component: {fileID: 953614054}
   m_Layer: 0
   m_Name: 3d-Clickable Object
   m_TagString: Untagged
@@ -213,6 +270,26 @@ Transform:
   - {fileID: 774112774}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &953614054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953614052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc4d048516f096443afca5005e6cb78c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  allowRotation: 1
+  inspectionPivot: {fileID: 0}
+  onInspectionStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  onInspectionEnded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1182246273
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,9 +379,36 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 98957070}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1327513789 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0a52aee74f567174caaf82bcc16dc8d2, type: 3}
+  m_PrefabInstance: {fileID: 774112773}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1327513792
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327513789}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.001535035
+  m_Center: {x: 9.675465e-10, y: 3.6223895e-11, z: 0.0012154724}
 --- !u!1 &1780542583
 GameObject:
   m_ObjectHideFlags: 0
