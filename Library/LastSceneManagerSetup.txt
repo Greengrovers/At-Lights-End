@@ -1,1 +1,5 @@
-sceneSetups: []
+sceneSetups:
+- path: Assets/At Lights End/Scenes/Prototype.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
