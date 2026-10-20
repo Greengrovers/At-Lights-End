@@ -28,6 +28,8 @@ namespace AtLightsEnd
         private Quaternion originalLocalRotation;
         private int originalSibling;
         private Transform inspectionRig;
+        private float inspectionDistance;
+        private Quaternion previousCameraRotation;
         private Vector2 previousPointer;
         private bool dragging;
         private CursorLockMode previousCursorLock;
@@ -58,6 +60,13 @@ namespace AtLightsEnd
             if (inspectionRig != null && CurrentObject == null) EndInspection();
             if (inspectionCamera == null) { EndInspection(); return; }
             ReadInput(out Vector2 pointer, out bool pressed, out bool held, out bool escape);
+            ProcessInput(pointer, pressed, held, escape);
+        }
+
+        private void ProcessInput(Vector2 pointer, bool pressed, bool held, bool escape)
+        {
+            // Screen-space navigation must never click through to a scene prop.
+            if (pressed && IsPointerOverUI(pointer)) pressed = false;
             if (IsInspecting)
             {
                 if (escape) { EndInspection(); return; }
@@ -74,13 +83,46 @@ namespace AtLightsEnd
             }
 
             if (!pressed || !inspectionCamera.pixelRect.Contains(pointer)) return;
-            Ray ray = inspectionCamera.ScreenPointToRay(pointer);
+            Ray ray = CreateInteractionRay(pointer);
             // Only the nearest surface counts: hidden props cannot be clicked through walls.
             if (Physics.Raycast(ray, out RaycastHit hit, interactionRange, raycastLayers, QueryTriggerInteraction.Ignore))
             {
                 InspectableObject target = hit.collider.GetComponentInParent<InspectableObject>();
                 if (target != null && target.isActiveAndEnabled) BeginInspection(target);
             }
+        }
+
+        private Ray CreateInteractionRay(Vector2 pointer)
+        {
+            Ray ray = inspectionCamera.ScreenPointToRay(pointer);
+            // ScreenPointToRay starts on the near clipping plane, which may be negative
+            // for orthographic backgrounds. Measure interaction range from the camera.
+            if (!inspectionCamera.orthographic)
+                return new Ray(inspectionCamera.transform.position, ray.direction);
+            float offset = Vector3.Dot(
+                inspectionCamera.transform.position - ray.origin,
+                inspectionCamera.transform.forward);
+            float forward = Vector3.Dot(ray.direction, inspectionCamera.transform.forward);
+            return new Ray(ray.GetPoint(offset / forward), ray.direction);
+        }
+
+        private void LateUpdate()
+        {
+            if (inspectionRig == null || inspectionCamera == null) return;
+            Transform view = inspectionCamera.transform;
+            inspectionRig.position = view.position + view.forward * inspectionDistance;
+            inspectionRig.rotation = view.rotation * Quaternion.Inverse(previousCameraRotation) * inspectionRig.rotation;
+            previousCameraRotation = view.rotation;
+        }
+
+        private static bool IsPointerOverUI(Vector2 pointer)
+        {
+            var eventSystem = UnityEngine.EventSystems.EventSystem.current;
+            if (eventSystem == null) return false;
+            var data = new UnityEngine.EventSystems.PointerEventData(eventSystem) { position = pointer };
+            var hits = new List<UnityEngine.EventSystems.RaycastResult>();
+            eventSystem.RaycastAll(data, hits);
+            return hits.Exists(hit => hit.module is UnityEngine.UI.GraphicRaycaster);
         }
 
         public void BeginInspection(InspectableObject target)
@@ -126,7 +168,9 @@ namespace AtLightsEnd
             if (inspectionCamera.orthographic)
             {
                 float available = inspectionCamera.orthographicSize * Mathf.Min(1f, inspectionCamera.aspect) * screenFill;
-                inspectionRig.localScale = Vector3.one * Mathf.Min(1f, available / radius);
+                // Moving closer does not enlarge objects in an orthographic camera.
+                inspectionRig.localScale = Vector3.one * (available / radius);
+                distance = Mathf.Max(distance, available + Mathf.Max(0f, inspectionCamera.nearClipPlane) + 0.1f);
             }
             else
             {
@@ -136,7 +180,9 @@ namespace AtLightsEnd
                 distance = Mathf.Max(distance, radius / Mathf.Sin(halfAngle));
             }
             inspectionRig.position = inspectionCamera.transform.position + inspectionCamera.transform.forward * distance;
-            inspectionRig.SetParent(inspectionCamera.transform, true);
+            // Follow camera pose without inheriting its scale (which can even contain zero).
+            inspectionDistance = distance;
+            previousCameraRotation = inspectionCamera.transform.rotation;
             dragging = false; // The click that selects a prop must not also rotate it.
             target.OnInspectionStarted.Invoke();
         }
