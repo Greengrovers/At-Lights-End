@@ -13,6 +13,8 @@ namespace AtLightsEnd
             public GameObject root;
             [Tooltip("The background used to fit the camera, excluding props.")]
             public Renderer background;
+            [Tooltip("Automatically played once when this room is first entered. Leave empty for no intro.")]
+            public DialogueAsset firstVisitDialogue;
         }
 
         [SerializeField] private Camera roomCamera;
@@ -28,6 +30,8 @@ namespace AtLightsEnd
 
         public int ActiveRoomIndex { get; private set; } = -1;
         public bool IsTransitioning { get; private set; }
+        public DialogueAsset ActiveRoomFirstVisitDialogue => ActiveRoomIndex >= 0 && ActiveRoomIndex < rooms.Length
+            ? rooms[ActiveRoomIndex].firstVisitDialogue : null;
         private Coroutine transition;
         private float previousAspect;
         private bool resumeInspection;

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a7adee4f4a0f842b9b7fcca3d4cad1, type: 3}
+  m_Name: Mein Character
+  m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueCharacter
+  displayName: Zeke
+  portrait: {fileID: -1256547764169911288, guid: 878fff68228f9794cb3db7a99f361209, type: 3}
+  portraitRegion:
+    serializedVersion: 2
+    x: 0.47395834
+    y: 0.022222223
+    width: 0.23958333
+    height: 0.87777776
+  nameColor: {r: 0.36, g: 0.25, b: 0.29, a: 1}

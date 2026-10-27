@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
+  m_Name: Demo_Tyla
+  m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  leftCharacter: {fileID: 11400000, guid: ef401f3d840ef2e46a0108e21edc86b2, type: 2}
+  rightCharacter: {fileID: 11400000, guid: 7d6b1249e3d6a18448f0388d9effbb35, type: 2}
+  lines:
+  - speaker: 0
+    text: "Hast du hier etwas Ungew\xF6hnliches bemerkt?"
+  - speaker: 1
+    text: Vielleicht. Lass uns den Raum genauer ansehen.
+  - speaker: 0
+    text: Dann fangen wir hier an.

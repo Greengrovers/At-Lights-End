@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
+  m_Name: Demo_Drake
+  m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  leftCharacter: {fileID: 11400000, guid: 71c3ef1e9d2bd3b4287e6d918c7ce5c1, type: 2}
+  rightCharacter: {fileID: 11400000, guid: 06595f1d1479bd440ba1a2617c9e80c1, type: 2}
+  lines:
+  - speaker: 0
+    text: Damn, why is there so much homework all of a sudden? Do teachers not have
+      anything better to do than torture us?
+  - speaker: 1
+    text: "Come on, it\u2019s not even that bad, it\u2019s just a few essays. And
+      at least you\u2019re not that one guy from the class below us. I heard he had
+      a run-in with Bradley and got pushed into the fountain. His whole backpack
+      was completely soaked and his homework absolutely ruined."
+  - speaker: 0
+    text: "Yeesh, yeah I definitely wouldn\u2019t wanna be him. Did his teacher at
+      least understand?"
+  - speaker: 1
+    text: "Nope, he gave the poor sucker a write-up in the class book for \u2018making
+      up excuses\u2019 for not having done his homework. He missed the entire day
+      today, probably to try and write everything anew as quickly as possible."
+  - speaker: 0
+    text: "What?? That\u2019s wayyy too harsh. Which teach was it, Mr. Dickings?
+      That guy\u2019s a major asshole. "

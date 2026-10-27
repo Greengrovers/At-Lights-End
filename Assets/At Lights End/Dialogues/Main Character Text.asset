@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
+  m_Name: Main Character Text
+  m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  leftCharacter: {fileID: 11400000, guid: 35b3862c7a99b7943befeb5d72936a30, type: 2}
+  rightCharacter: {fileID: 0}
+  lines:
+  - speaker: 0
+    text: "Alright, lunch break time. So I guess I\u2019m gonna sneak up on people
+      and listen in on their conversations? Yeah, way to sound like a creep\u2026
+      Whatever, lets just get this done.\r\nYou look around the room. Most people
+      have already left to the cafeteria, but there\u2019s still a handful students
+      around engaged in conversations. "
+  - speaker: 0
+    text: "Humm, I guess I\u2019ll just pretend to be busy to get close and listen
+      in. Now, which way to go?\r\nOptions to click on two groups of people, left
+      two girls, and right one girl talking on her phone. "
