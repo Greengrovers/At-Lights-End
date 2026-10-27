@@ -981,6 +981,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueView
   font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   paperSprite: {fileID: 0}
+  thoughtBubblePrefab: {fileID: 4940812956800744134, guid: 1fd47c914f6a03e4a8f866a2b12f9f1e, type: 3}
+  thoughtBubbleStyle: {fileID: 11400000, guid: b4d6a46325b412a41bfd2a4970adc7b6, type: 2}
   paperColor: {r: 0.91, g: 0.86, b: 0.76, a: 1}
   inactiveBrightness: 0.52
 --- !u!4 &398429812
@@ -1573,6 +1575,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769089643}
   m_CullTransparentMesh: 1
+--- !u!1 &782020909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 782020912}
+  - component: {fileID: 782020911}
+  - component: {fileID: 782020910}
+  m_Layer: 0
+  m_Name: Game Session
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &782020910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782020909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ec24ed5b7442ab48ad0ffc810f11506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.SessionUI
+  context: {fileID: 782020911}
+  font: {fileID: 0}
+--- !u!114 &782020911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782020909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a72d403b1d66142b7703995729cfd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.GameSceneContext
+  night: 0
+  dayScenePath: Assets/At Lights End/Scenes/Shool Day.unity
+  nightScenePath: Assets/At Lights End/Scenes/Prototype Nacht.unity
+  dialogue: {fileID: 398429810}
+  navigation: {fileID: 469417857}
+  inspection: {fileID: 1954792035}
+--- !u!4 &782020912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782020909}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &821317654
 GameObject:
   m_ObjectHideFlags: 0
@@ -3222,3 +3289,4 @@ SceneRoots:
   - {fileID: 469417858}
   - {fileID: 242140432}
   - {fileID: 398429812}
+  - {fileID: 782020912}

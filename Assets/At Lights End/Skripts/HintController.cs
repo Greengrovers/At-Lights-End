@@ -37,6 +37,7 @@ namespace AtLightsEnd
 
         private Hint GetAvailableHint()
         {
+            if (PlayerSession.BlocksWorldInput) return null;
             if (navigation != null && navigation.IsTransitioning) return null;
             if (inspection != null && inspection.IsInspecting) return null;
             foreach (Hint hint in hints)

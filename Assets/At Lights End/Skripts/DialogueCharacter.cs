@@ -6,6 +6,8 @@ namespace AtLightsEnd
     public sealed class DialogueCharacter : ScriptableObject
     {
         public string displayName;
+        public bool isPlayerCharacter;
+        public string DisplayName => isPlayerCharacter && PlayerSession.HasPlayerName ? PlayerSession.PlayerName : displayName;
         public Sprite portrait;
         [Tooltip("Visible character region, in normalized texture coordinates. Leaves source art unchanged.")]
         public Rect portraitRegion = new Rect(0, 0, 1, 1);

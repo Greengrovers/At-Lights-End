@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace AtLightsEnd
@@ -9,22 +8,22 @@ namespace AtLightsEnd
     {
         [SerializeField] private RoomNavigationController navigation;
         [SerializeField] private DialogueController dialogue;
-        private readonly HashSet<int> playedRooms = new HashSet<int>();
 
-        public bool HasPlayed(int roomIndex) => playedRooms.Contains(roomIndex);
+        private string VisitId(int roomIndex) => gameObject.scene.path + ":room:" + roomIndex;
+        public bool HasPlayed(int roomIndex) => PlayerSession.HasVisited(VisitId(roomIndex));
 
         private void LateUpdate()
         {
             // Start also covers the initially visible room. Waiting until LateUpdate lets
             // Start, camera framing and the transition coroutine finish first.
-            if (navigation == null || dialogue == null || !navigation.isActiveAndEnabled ||
+            if (PlayerSession.BlocksWorldInput || navigation == null || dialogue == null || !navigation.isActiveAndEnabled ||
                 navigation.IsTransitioning || dialogue.IsOpen || navigation.ActiveRoomIndex < 0) return;
             int roomIndex = navigation.ActiveRoomIndex;
-            if (playedRooms.Contains(roomIndex)) return;
+            if (HasPlayed(roomIndex)) return;
             DialogueAsset intro = navigation.ActiveRoomFirstVisitDialogue;
             if (intro == null) return;
             // Only consume the intro after the controller actually accepts it.
-            if (dialogue.TryBeginConversation(intro)) playedRooms.Add(roomIndex);
+            if (dialogue.TryBeginConversation(intro)) PlayerSession.MarkVisited(VisitId(roomIndex));
         }
     }
 }

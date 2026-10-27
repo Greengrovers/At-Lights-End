@@ -4,7 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/At Lights End/Scenes/Shool Day.unity
+    guid: 2370553f3af329a468935c62e74826d0
+  - enabled: 1
+    path: Assets/At Lights End/Scenes/Prototype Nacht.unity
+    guid: bb9d06349224fb442a71e64dd8f60d53
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
   m_UseUCBPForAssetBundles: 0

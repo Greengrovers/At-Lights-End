@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Mein Character
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueCharacter
   displayName: Zeke
+  isPlayerCharacter: 1
   portrait: {fileID: -1256547764169911288, guid: 878fff68228f9794cb3db7a99f361209, type: 3}
   portraitRegion:
     serializedVersion: 2

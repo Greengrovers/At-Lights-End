@@ -34,6 +34,7 @@ namespace AtLightsEnd
         }
         private void Update()
         {
+            if (PlayerSession.BlocksWorldInput) return;
             ReadInput(out Vector2 pointer, out bool clicked, out bool next, out bool close);
             if (IsOpen)
             {
@@ -76,7 +77,7 @@ namespace AtLightsEnd
         // Allows room intros and other scripted events without a clickable scene actor.
         public bool TryBeginConversation(DialogueAsset dialogue, DialogueActor source = null)
         {
-            if (!isActiveAndEnabled || IsOpen || dialogue == null || !dialogue.IsValid ||
+            if (PlayerSession.BlocksWorldInput || !isActiveAndEnabled || IsOpen || dialogue == null || !dialogue.IsValid ||
                 (source != null && !source.isActiveAndEnabled) ||
                 (navigation != null && navigation.IsTransitioning)) return false;
             actor = source;
@@ -85,6 +86,7 @@ namespace AtLightsEnd
             lineIndex = 0;
             if (hovered != null) hovered.SetHighlighted(false);
             hovered = null;
+            if (!dialogue.playerThoughts)
             foreach (var sceneActor in FindObjectsByType<DialogueActor>(FindObjectsSortMode.None))
             {
                 var renderer = sceneActor.GetComponent<SpriteRenderer>();

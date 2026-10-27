@@ -32,6 +32,8 @@ namespace AtLightsEnd
         private Quaternion previousCameraRotation;
         private Vector2 previousPointer;
         private bool dragging;
+        private bool inventoryPreview;
+        private System.Action returnToInventory;
         private CursorLockMode previousCursorLock;
         private bool previousCursorVisible;
         private readonly List<BodyState> bodies = new List<BodyState>();
@@ -65,11 +67,12 @@ namespace AtLightsEnd
 
         private void ProcessInput(Vector2 pointer, bool pressed, bool held, bool escape)
         {
+            if (PlayerSession.BlocksWorldInput) return;
             // Screen-space navigation must never click through to a scene prop.
             if (pressed && IsPointerOverUI(pointer)) pressed = false;
             if (IsInspecting)
             {
-                if (escape) { EndInspection(); return; }
+                if (escape) { FinishInspection(true); return; }
                 if (pressed) { dragging = true; previousPointer = pointer; }
                 if (!held) dragging = false;
                 if (dragging && CurrentObject.AllowRotation)
@@ -87,6 +90,12 @@ namespace AtLightsEnd
             // Only the nearest surface counts: hidden props cannot be clicked through walls.
             if (Physics.Raycast(ray, out RaycastHit hit, interactionRange, raycastLayers, QueryTriggerInteraction.Ignore))
             {
+                InventoryPickup pickup = hit.collider.GetComponentInParent<InventoryPickup>();
+                if (pickup != null)
+                {
+                    if (PlayerSession.IsNight) BeginInspection(pickup.GetComponent<InspectableObject>());
+                    return;
+                }
                 InspectableObject target = hit.collider.GetComponentInParent<InspectableObject>();
                 if (target != null && target.isActiveAndEnabled) BeginInspection(target);
             }
@@ -127,7 +136,7 @@ namespace AtLightsEnd
 
         public void BeginInspection(InspectableObject target)
         {
-            if (!isActiveAndEnabled || target == null || !target.isActiveAndEnabled || IsInspecting || inspectionCamera == null) return;
+            if (PlayerSession.BlocksWorldInput || !isActiveAndEnabled || target == null || !target.isActiveAndEnabled || IsInspecting || inspectionCamera == null) return;
             // Moving an ancestor of the camera would move the camera itself.
             if (inspectionCamera.transform.IsChildOf(target.transform)) return;
             CurrentObject = target;
@@ -187,10 +196,29 @@ namespace AtLightsEnd
             target.OnInspectionStarted.Invoke();
         }
 
-        public void EndInspection()
+        public bool BeginInventoryInspection(InventoryItem item, System.Action onReturn)
+        {
+            if (!PlayerSession.IsNight || PlayerSession.BlocksWorldInput || IsInspecting ||
+                item == null || item.inspectionPrefab == null || !isActiveAndEnabled) return false;
+            var preview = Instantiate(item.inspectionPrefab);
+            preview.name = item.displayName + " (Inventory Preview)";
+            BeginInspection(preview);
+            if (CurrentObject != preview) { Destroy(preview.gameObject); return false; }
+            inventoryPreview = true;
+            returnToInventory = onReturn;
+            return true;
+        }
+
+        public void EndInspection() => FinishInspection(false);
+
+        private void FinishInspection(bool confirmed)
         {
             if (inspectionRig == null && CurrentObject == null) return;
             InspectableObject target = CurrentObject;
+            bool preview = inventoryPreview;
+            var onReturn = returnToInventory;
+            inventoryPreview = false;
+            returnToInventory = null;
             CurrentObject = null;
             dragging = false;
             if (target != null)
@@ -222,6 +250,16 @@ namespace AtLightsEnd
             if (inspectionRig != null) Destroy(inspectionRig.gameObject);
             inspectionRig = null;
             if (target != null) target.OnInspectionEnded.Invoke();
+            if (preview)
+            {
+                if (target != null) Destroy(target.gameObject);
+                if (confirmed) onReturn?.Invoke();
+            }
+            else if (confirmed && target != null && PlayerSession.IsNight)
+            {
+                var pickup = target.GetComponent<InventoryPickup>();
+                if (pickup != null) pickup.TryCollect();
+            }
         }
 
         private void OnDisable() => EndInspection();

@@ -67,6 +67,7 @@ namespace AtLightsEnd
 
         public void GoToRoom(int index)
         {
+            if (PlayerSession.BlocksWorldInput) return;
             if (!isActiveAndEnabled || IsTransitioning || roomCamera == null ||
                 index < 0 || index >= rooms.Length || index == ActiveRoomIndex) return;
             transition = StartCoroutine(ChangeRoom(index));

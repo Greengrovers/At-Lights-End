@@ -9,6 +9,8 @@ namespace AtLightsEnd
     {
         public DialogueCharacter leftCharacter;
         public DialogueCharacter rightCharacter;
+        [Tooltip("Main-character thoughts: blue bubble, room stays visible, no character close-ups.")]
+        public bool playerThoughts;
         public enum Speaker { Left, Right }
         [Serializable] public sealed class Line
         {
