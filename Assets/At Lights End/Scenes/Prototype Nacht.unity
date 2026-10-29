@@ -256,7 +256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 153628672}
   m_Layer: 0
-  m_Name: Raum 2 (Gruppe)
+  m_Name: 'Dorm '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -570,6 +570,60 @@ Transform:
   - {fileID: 953614053}
   - {fileID: 1965983499}
   m_Father: {fileID: 1155958730}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &618930187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 618930189}
+  - component: {fileID: 618930188}
+  m_Layer: 0
+  m_Name: Cat Shadow Video Event
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &618930188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618930187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c44c06ea94762584c926b43d45ee1084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.RoomVideoEvent
+  eventId: cat-shadow
+  playOnFirstEntry: 1
+  roomIndex: 1
+  navigation: {fileID: 1087341124}
+  video: {fileID: 32900000, guid: 6cb2d92cf2067ac4aa31a2dc4facb9ab, type: 3}
+  sound: {fileID: 8300000, guid: 1693c1fb2a57302429c1f9dac0754ee3, type: 3}
+  volume: 0.8
+  onFinished:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &618930189
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618930187}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &634717844
 GameObject:
@@ -2184,7 +2238,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2018374901723881341, guid: 5b30dd7224535f545a865eae117464af, type: 3}
+  m_Sprite: {fileID: -5376967727171364169, guid: 90265ecc4fb42fc41b235241cfbb17da, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2714,7 +2768,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 4921454879328404234, guid: c0c3a6a0dd587bb4bad270c6875ce570, type: 3}
+  m_Sprite: {fileID: -3171725089193786190, guid: ebb6082dc98d42b418344ae5b9913fa4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3045,3 +3099,4 @@ SceneRoots:
   - {fileID: 634717848}
   - {fileID: 1532690899}
   - {fileID: 782020912}
+  - {fileID: 618930189}

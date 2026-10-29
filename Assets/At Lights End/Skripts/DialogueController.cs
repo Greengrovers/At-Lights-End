@@ -101,14 +101,19 @@ namespace AtLightsEnd
                 explorationUI.alpha = 0; explorationUI.interactable = false; explorationUI.blocksRaycasts = false;
             }
             view.Show(conversation, lineIndex);
+            RoomVideoEvent.Trigger(conversation.lines[lineIndex].videoEventId);
             return true;
         }
         public void Advance()
         {
-            if (!IsOpen) return;
+            if (!IsOpen || PlayerSession.CinematicPlaying) return;
             if (view.TryAdvancePage()) return;
             if (++lineIndex >= conversation.lines.Length) End();
-            else view.Show(conversation, lineIndex);
+            else
+            {
+                view.Show(conversation, lineIndex);
+                RoomVideoEvent.Trigger(conversation.lines[lineIndex].videoEventId);
+            }
         }
         public void End()
         {

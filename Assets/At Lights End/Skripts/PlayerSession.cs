@@ -21,7 +21,8 @@ namespace AtLightsEnd
         public static bool IsNight { get; internal set; }
         public static bool InventoryOpen { get; internal set; }
         public static bool IsLoading { get; internal set; }
-        public static bool BlocksWorldInput => !HasPlayerName || InventoryOpen || IsLoading;
+        public static bool CinematicPlaying { get; internal set; }
+        public static bool BlocksWorldInput => !HasPlayerName || InventoryOpen || IsLoading || CinematicPlaying;
         public static event Action InventoryChanged;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -29,6 +30,7 @@ namespace AtLightsEnd
         {
             inventory.Clear(); collected.Clear(); visited.Clear();
             PlayerName = ""; IsNight = InventoryOpen = IsLoading = false;
+            CinematicPlaying = false;
             InventoryChanged = null;
         }
         public static bool SetPlayerName(string value)

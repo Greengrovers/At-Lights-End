@@ -15,7 +15,7 @@ namespace AtLightsEnd
         [SerializeField] private ObjectInspectionController inspection;
         public static GameSceneContext Current { get; private set; }
         public bool IsNight => night;
-        public bool CanExplore => PlayerSession.HasPlayerName && !PlayerSession.IsLoading &&
+        public bool CanExplore => PlayerSession.HasPlayerName && !PlayerSession.IsLoading && !PlayerSession.CinematicPlaying &&
             (dialogue == null || !dialogue.IsOpen) && (navigation == null || !navigation.IsTransitioning) &&
             (inspection == null || !inspection.IsInspecting);
 

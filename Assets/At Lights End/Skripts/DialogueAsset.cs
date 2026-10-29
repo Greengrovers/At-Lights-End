@@ -16,6 +16,8 @@ namespace AtLightsEnd
         {
             public Speaker speaker;
             [TextArea(3, 10)] public string text;
+            [Tooltip("Optional scene video event ID, e.g. cat-shadow. Plays when this line appears.")]
+            public string videoEventId;
         }
         public Line[] lines = new Line[0];
         // A monologue may leave the unused side empty. Every speaking side must exist.
