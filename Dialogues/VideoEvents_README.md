@@ -2,6 +2,8 @@
 
 In `Prototype Nacht` liegt das Objekt **Cat Shadow Video Event** mit der Komponente **RoomVideoEvent**.
 
+Auch in `Shool Day` gibt es dieses Ereignisobjekt: Dort ist **Play On First Entry** ausgeschaltet und Tylas Dialog löst `cat-shadow` aus. Eine ID allein lädt kein Ereignis aus einer anderen Szene; die Szene des Dialogs braucht ein aktives Ereignisobjekt mit Video- und Sound-Zuweisung.
+
 - Aktuell startet es beim ersten Betreten von **Raum 2** (Room Index = 1), nach dem Raumübergang und nach der Namenseingabe.
 - Video: `Assets/At Lights End/Cinematics/GAP_cat_glitchy_shadow.mov` (ca. 5 Sekunden).
 - Sound: `Assets/At Lights End/Cinematics/thunder-clap.mp3` (ca. 7 Sekunden), Lautstärke 0,8.

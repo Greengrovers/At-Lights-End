@@ -2752,6 +2752,60 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1638370845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1638370847}
+  - component: {fileID: 1638370846}
+  m_Layer: 0
+  m_Name: Cat Shadow Video Event
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1638370846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638370845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c44c06ea94762584c926b43d45ee1084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.RoomVideoEvent
+  eventId: cat-shadow
+  playOnFirstEntry: 0
+  roomIndex: 1
+  navigation: {fileID: 469417857}
+  video: {fileID: 32900000, guid: 6cb2d92cf2067ac4aa31a2dc4facb9ab, type: 3}
+  sound: {fileID: 8300000, guid: 1693c1fb2a57302429c1f9dac0754ee3, type: 3}
+  volume: 0.8
+  onFinished:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &1638370847
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638370845}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1865368219
 GameObject:
   m_ObjectHideFlags: 0
@@ -3290,3 +3344,4 @@ SceneRoots:
   - {fileID: 242140432}
   - {fileID: 398429812}
   - {fileID: 782020912}
+  - {fileID: 1638370847}

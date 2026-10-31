@@ -17,8 +17,8 @@ MonoBehaviour:
   playerThoughts: 0
   lines:
   - speaker: 0
-    text: ???
-    videoEventId: 
+    text: Test
+    videoEventId: cat-shadow
   - speaker: 1
     text: Vielleicht. Lass uns den Raum genauer ansehen.
     videoEventId: 
