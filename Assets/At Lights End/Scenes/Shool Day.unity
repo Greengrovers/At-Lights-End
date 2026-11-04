@@ -1113,6 +1113,36 @@ MonoBehaviour:
   thoughtSymbol: {fileID: 21300000, guid: e92efbcb75f62214f8f1f8a9731b3891, type: 3}
   paperColor: {r: 0.91, g: 0.86, b: 0.76, a: 1}
   inactiveBrightness: 0.52
+  twoPersonLeft:
+    serializedVersion: 2
+    x: 0.04
+    y: 0.2
+    width: 0.44
+    height: 0.78
+  twoPersonRight:
+    serializedVersion: 2
+    x: 0.52
+    y: 0.2
+    width: 0.44
+    height: 0.78
+  threePersonLeft:
+    serializedVersion: 2
+    x: 0.04
+    y: 0.254
+    width: 0.304
+    height: 0.722
+  threePersonMiddle:
+    serializedVersion: 2
+    x: 0.345
+    y: 0.2
+    width: 0.31
+    height: 0.78
+  threePersonRight:
+    serializedVersion: 2
+    x: 0.665
+    y: 0.2
+    width: 0.31
+    height: 0.78
 --- !u!4 &398429812
 Transform:
   m_ObjectHideFlags: 0
@@ -1157,7 +1187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &427665111
 Transform:
   m_ObjectHideFlags: 0
@@ -2289,7 +2319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &939327849
 Transform:
   m_ObjectHideFlags: 0
@@ -4834,7 +4864,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.78, y: 8.28, z: 0.1}
+  m_Size: {x: 3.78, y: 8.28, z: 1.9}
   m_Center: {x: -2.43, y: -0.87, z: 0}
 --- !u!114 &2028616650
 MonoBehaviour:

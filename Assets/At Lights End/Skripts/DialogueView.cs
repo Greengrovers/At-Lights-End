@@ -28,6 +28,22 @@ namespace AtLightsEnd
         private TMP_Text thoughtBody, thoughtSpeaker, thoughtCounter, thoughtNext;
         public Color LeftTint => left.color;
         public Color RightTint => right.color;
+        public Rect GetPortraitFrame(DialogueAsset.Speaker side, bool threePeople)
+        {
+            if (side == DialogueAsset.Speaker.Middle) return threePersonMiddle;
+            return side == DialogueAsset.Speaker.Left
+                ? (threePeople ? threePersonLeft : twoPersonLeft)
+                : (threePeople ? threePersonRight : twoPersonRight);
+        }
+        public Rect GetPortraitCrop(DialogueCharacter character)
+        {
+            Rect crop = character.autoPortraitRegion && character.portrait != null
+                ? VisiblePortraitBounds(character.portrait) : character.portraitRegion;
+            float trim = Mathf.Clamp(character.closeUpBottomCrop, 0, 0.6f);
+            crop.y += crop.height * trim; crop.height *= 1 - trim;
+            return crop;
+        }
+        public void ClearPortraitPreviewCache() => portraitBounds.Clear();
 
         public void Initialize(DialogueController controller)
         {
@@ -75,6 +91,28 @@ namespace AtLightsEnd
             left.color = Color.Lerp(left.color, speakingSide == DialogueAsset.Speaker.Left ? Color.white : dim, t);
             right.color = Color.Lerp(right.color, speakingSide == DialogueAsset.Speaker.Right ? Color.white : dim, t);
             middle.color = Color.Lerp(middle.color, speakingSide == DialogueAsset.Speaker.Middle ? Color.white : dim, t);
+        }
+        private void LateUpdate()
+        {
+            if (root == null || !root.activeSelf) return;
+            // A shared height that fits even the widest pose avoids both cropped arms
+            // and one character floating smaller and higher than the other speakers.
+            float height = float.MaxValue;
+            foreach (var portrait in new[] { left, middle, right })
+            {
+                if (!portrait.isActiveAndEnabled || portrait.texture == null) continue;
+                var frame = ((RectTransform)portrait.transform.parent).rect;
+                float aspect = portrait.GetComponent<UnityEngine.UI.AspectRatioFitter>().aspectRatio;
+                height = Mathf.Min(height, frame.height, frame.width / Mathf.Max(0.01f, aspect));
+            }
+            if (height == float.MaxValue || height <= 0) return;
+            foreach (var portrait in new[] { left, middle, right })
+            {
+                if (!portrait.isActiveAndEnabled || portrait.texture == null) continue;
+                float aspect = portrait.GetComponent<UnityEngine.UI.AspectRatioFitter>().aspectRatio;
+                portrait.rectTransform.sizeDelta = new Vector2(height * aspect, height);
+                portrait.rectTransform.anchoredPosition = Vector2.zero;
+            }
         }
         public void Show(DialogueAsset dialogue, int index)
         {
@@ -189,11 +227,7 @@ namespace AtLightsEnd
             }
             image.texture = character.portrait == null ? null : character.portrait.texture;
             image.enabled = image.texture != null;
-            Rect crop = character.autoPortraitRegion && character.portrait != null
-                ? VisiblePortraitBounds(character.portrait) : character.portraitRegion;
-            // Upper-body close-up, using UV cropping rather than modifying the original image.
-            float trim = Mathf.Clamp(character.closeUpBottomCrop, 0, 0.6f);
-            crop.y += crop.height * trim; crop.height *= 1 - trim;
+            Rect crop = GetPortraitCrop(character);
             image.uvRect = crop;
             if (image.texture != null)
                 image.GetComponent<UnityEngine.UI.AspectRatioFitter>().aspectRatio =
@@ -220,9 +254,33 @@ namespace AtLightsEnd
                 readable.Apply();
                 var pixels = readable.GetPixels32();
                 int minX = resolution, minY = resolution, maxX = -1, maxY = -1;
-                for (int y = 0; y < resolution; y++) for (int x = 0; x < resolution; x++)
-                    if (pixels[y * resolution + x].a >= 26)
-                    { minX = Mathf.Min(minX, x); minY = Mathf.Min(minY, y); maxX = Mathf.Max(maxX, x); maxY = Mathf.Max(maxY, y); }
+                // Exported character sheets can contain detached colour swatches or stray marks.
+                // Frame the largest connected silhouette instead of including every opaque pixel.
+                var seen = new bool[pixels.Length];
+                var queue = new int[pixels.Length];
+                int largest = 0;
+                for (int start = 0; start < pixels.Length; start++)
+                {
+                    if (seen[start] || pixels[start].a < 26) continue;
+                    int head = 0, tail = 0, x0 = resolution, y0 = resolution, x1 = -1, y1 = -1;
+                    queue[tail++] = start; seen[start] = true;
+                    while (head < tail)
+                    {
+                        int point = queue[head++], x = point % resolution, y = point / resolution;
+                        x0 = Mathf.Min(x0, x); y0 = Mathf.Min(y0, y);
+                        x1 = Mathf.Max(x1, x); y1 = Mathf.Max(y1, y);
+                        for (int dy = -1; dy <= 1; dy++) for (int dx = -1; dx <= 1; dx++)
+                        {
+                            int nx = x + dx, ny = y + dy;
+                            if (nx < 0 || ny < 0 || nx >= resolution || ny >= resolution) continue;
+                            int next = ny * resolution + nx;
+                            if (seen[next] || pixels[next].a < 26) continue;
+                            seen[next] = true; queue[tail++] = next;
+                        }
+                    }
+                    if (tail > largest)
+                    { largest = tail; minX = x0; minY = y0; maxX = x1; maxY = y1; }
+                }
                 if (maxX >= minX && maxY >= minY)
                 {
                     minX = Mathf.Max(0, minX - 2); minY = Mathf.Max(0, minY - 2);
@@ -237,16 +295,23 @@ namespace AtLightsEnd
             {
                 RenderTexture.active = previous;
                 RenderTexture.ReleaseTemporary(target);
-                if (readable != null) Destroy(readable);
+                if (readable != null)
+                {
+                    if (Application.isPlaying) Destroy(readable);
+                    else DestroyImmediate(readable);
+                }
             }
         }
         private UnityEngine.UI.RawImage Portrait(string name, Vector2 min, Vector2 max)
         {
             var holder = Rect(name + " Frame", root.transform, min, max);
             holder.gameObject.AddComponent<UnityEngine.UI.RectMask2D>();
-            var rect = Rect(name, holder, Vector2.zero, Vector2.one);
+            // Size all visible portraits together in LateUpdate, anchored at the baseline.
+            var rect = Rect(name, holder, new Vector2(0.5f, 0), new Vector2(0.5f, 0));
+            rect.pivot = new Vector2(0.5f, 0);
             var image = rect.gameObject.AddComponent<UnityEngine.UI.RawImage>(); image.raycastTarget = false;
-            rect.gameObject.AddComponent<UnityEngine.UI.AspectRatioFitter>().aspectMode = UnityEngine.UI.AspectRatioFitter.AspectMode.FitInParent;
+            var fitter = rect.gameObject.AddComponent<UnityEngine.UI.AspectRatioFitter>();
+            fitter.enabled = false; // Stores the aspect ratio; shared sizing is handled above.
             return image;
         }
         private RectTransform Rect(string name, Transform parent, Vector2 min, Vector2 max)

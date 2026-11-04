@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Danica_Class_Day1_Phone
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
   leftCharacter: {fileID: 11400000, guid: bce291fb00386af4fbefcd7fdf5ad4c9, type: 2}
-  rightCharacter: {fileID: 0}
+  rightCharacter: {fileID: 11400000, guid: 8a60451c341d76f4fbd9729189afb6fb, type: 2}
   middleCharacter: {fileID: 0}
   narrator: 0
   playerThoughts: 0
