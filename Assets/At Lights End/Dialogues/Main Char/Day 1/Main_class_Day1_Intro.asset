@@ -14,15 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
   leftCharacter: {fileID: 11400000, guid: 35b3862c7a99b7943befeb5d72936a30, type: 2}
   rightCharacter: {fileID: 0}
+  middleCharacter: {fileID: 0}
+  narrator: 0
   playerThoughts: 1
   lines:
   - speaker: 0
+    kind: 0
     text: "Alright, lunch break time. So I guess I\u2019m gonna sneak up on people
       and listen in on their conversations? Yeah, way to sound like a creep\u2026
-      Whatever, lets just get this done.\r\nYou look around the room. Most people
-      have already left to the cafeteria, but there\u2019s still a handful students
-      around engaged in conversations. "
+      Whatever, lets just get this done."
+    videoEventId: 
   - speaker: 0
+    kind: 2
+    text: "You look around the room. Most people have already left to the cafeteria,
+      but there\u2019s still a handful students around engaged in conversations."
+    videoEventId: 
+  - speaker: 0
+    kind: 0
     text: "Humm, I guess I\u2019ll just pretend to be busy to get close and listen
-      in. Now, which way to go?\r\nOptions to click on two groups of people, left
-      two girls, and right one girl talking on her phone. "
+      in. Now, which way to go?\r\n "
+    videoEventId: 

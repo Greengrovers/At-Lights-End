@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
+  m_Name: Fred_Albert_Cafeteria_Day1_Visit2
+  m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  leftCharacter: {fileID: 11400000, guid: b5e3f9ae8b94b0a43adf914e7e68cbb3, type: 2}
+  rightCharacter: {fileID: 11400000, guid: 7ff3770d89d6fa84cb00f612d22cc128, type: 2}
+  middleCharacter: {fileID: 0}
+  narrator: 0
+  playerThoughts: 0
+  lines:
+  - speaker: 0
+    kind: 0
+    text: Aww man, they put eggs in my sandwich. I told them I wanted it without
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: "You can just give them to me; I\u2019ll eat them if you won\u2019t."
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "You can just give them to me; I\u2019ll eat them if you won\u2019t."
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: "You can just give them to me; I\u2019ll eat them if you won\u2019t."
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "That\u2019d be cool yeah, wouldn\u2019t want to throw them away. Oh, right,
+      what\u2019d you get for question number seven by the way? I think I fucked
+      up the formula on that one\u2026"
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: "I\u2019ve got 120.39"
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "Ah shit, I somehow ended up with 56.70. Oh well, there goes my A. And
+      I even studied a lot this time\u2026 "
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: 'If you want, I can help you a bit after school, we could so a little study-hangout.  '
+    videoEventId: 
+  - speaker: 2
+    kind: 2
+    text: 'Your head is ringing from all the information you gathered, listening
+      in on conversations is way more exhausting than it seems. Maybe you should
+      finish up and head to your dormroom to take a nap until night. '
+    videoEventId: 

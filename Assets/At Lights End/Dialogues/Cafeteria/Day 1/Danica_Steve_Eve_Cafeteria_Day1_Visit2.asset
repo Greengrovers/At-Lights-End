@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
+  m_Name: Danica_Steve_Eve_Cafeteria_Day1_Visit2
+  m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  leftCharacter: {fileID: 11400000, guid: bce291fb00386af4fbefcd7fdf5ad4c9, type: 2}
+  rightCharacter: {fileID: 11400000, guid: 42846e5f573437e44bc0f0e3692fe7d5, type: 2}
+  middleCharacter: {fileID: 11400000, guid: 68114dd70c4698842b14d0ce7d7e314b, type: 2}
+  narrator: 0
+  playerThoughts: 0
+  lines:
+  - speaker: 0
+    kind: 0
+    text: Omg so they actually fought fought? Like not just verbally?
+    videoEventId: 
+  - speaker: 2
+    kind: 0
+    text: 'Yeah girl, Dee deadass ripped a few of Veronicas fresh braids out. It
+      was absolutely wild. '
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: 'Veronica got her ass back for it though, she headbutted her so hard Dee
+      broke her nose. Was a shitton of blood, let me tell you. '
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "That\u2019s insane. I still don\u2019t get why they fought like that though,
+      weren\u2019t they friends?"
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: "You don\u2019t know yet? I figured by now everyone must\u2019ve heard
+      it, even if they\u2019re tryna keep it under wraps. You remember that party
+      at James\u2019 last weekend?"
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: 'Yeah? '
+    videoEventId: 
+  - speaker: 2
+    kind: 0
+    text: "Well, apparently Veronica caught Dee cheating on her boyfriend and tattled
+      on her. And he obviously didn\u2019t like that, and they got into an argument
+      and broke up within the hour."
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: 'Dee found out she told him and got angry at Veronica. So, shitfaced drunk
+      as she was, she thought it was a good idea to get revenge for that- '
+    videoEventId: 
+  - speaker: 2
+    kind: 0
+    text: ' -and set Veronica up with a hookup a few days later and leaked her sex-tape'
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "WHAT?! That\u2019s insane! That could\u2019ve destroyed her future!"
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: ": WHAT?! That\u2019s insane! That could\u2019ve destroyed her future!"
+    videoEventId: 
+  - speaker: 2
+    kind: 0
+    text: "It\u2019s really fucked up, especially since Lacey also got her hands
+      on it. And you know how that goes, once Lacey knows everyone in that group
+      knows."
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "Shit, I don\u2019t even wanna know what kinda shit Lucas is gonna get
+      up to with that sort of ammunition\u2026"
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: Not like he has much room to talk, I heard his girlfriend broke up with
+      him.
+    videoEventId: 

@@ -128,6 +128,10 @@ namespace AtLightsEnd
 
         private void ActivateOnly(int index)
         {
+            string visitKey = gameObject.scene.path + ":room-entry:" + index;
+            int visits = ActiveRoomIndex != index ? PlayerSession.RecordRoomEntry(visitKey) : PlayerSession.RoomVisits(visitKey);
+            var cast = rooms[index].root.GetComponent<RoomVisitCast>();
+            if (cast != null) cast.ApplyVisit(visits);
             for (int i = 0; i < rooms.Length; i++) rooms[i].root.SetActive(false);
             rooms[index].root.SetActive(true);
             ActiveRoomIndex = index;

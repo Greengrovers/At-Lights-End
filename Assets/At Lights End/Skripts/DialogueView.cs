@@ -7,19 +7,25 @@ namespace AtLightsEnd
     {
         [SerializeField] private TMP_FontAsset font;
         [SerializeField] private Sprite paperSprite;
-        [SerializeField] private SpeechBubble.SpeechBubble_TMP thoughtBubblePrefab;
-        [SerializeField] private SpeechBubble.SpeechBubbleStyle thoughtBubbleStyle;
+        [SerializeField] private Sprite thoughtSymbol;
         [SerializeField] private Color paperColor = new Color(0.91f, 0.86f, 0.76f, 1);
         [SerializeField, Range(0.2f, 0.9f)] private float inactiveBrightness = 0.52f;
+        [Header("Dialogue Portrait Positions (normalized screen coordinates)")]
+        [SerializeField] private Rect twoPersonLeft = new Rect(0.04f, 0.20f, 0.44f, 0.78f);
+        [SerializeField] private Rect twoPersonRight = new Rect(0.52f, 0.20f, 0.44f, 0.78f);
+        [SerializeField] private Rect threePersonLeft = new Rect(0.025f, 0.20f, 0.31f, 0.78f);
+        [SerializeField] private Rect threePersonMiddle = new Rect(0.345f, 0.20f, 0.31f, 0.78f);
+        [SerializeField] private Rect threePersonRight = new Rect(0.665f, 0.20f, 0.31f, 0.78f);
+        private readonly System.Collections.Generic.Dictionary<Sprite, Rect> portraitBounds = new System.Collections.Generic.Dictionary<Sprite, Rect>();
         private GameObject root;
-        private UnityEngine.UI.RawImage left, right;
+        private UnityEngine.UI.RawImage left, right, middle;
         private TMP_Text speaker, body, counter, nextLabel;
-        private bool speakingLeft;
+        private DialogueAsset.Speaker speakingSide;
+        private Sprite roundedSprite;
         private Transform paperRoot, thoughtRoot;
         private UnityEngine.UI.Image backdrop;
         private TMP_Text paperBody, paperSpeaker, paperCounter, paperNext;
         private TMP_Text thoughtBody, thoughtSpeaker, thoughtCounter, thoughtNext;
-        private SpeechBubble.SpeechBubble_TMP thoughtBubble;
         public Color LeftTint => left.color;
         public Color RightTint => right.color;
 
@@ -36,6 +42,7 @@ namespace AtLightsEnd
             backdrop = Image("Backdrop", root.transform, Vector2.zero, Vector2.one, new Color(0.04f, 0.03f, 0.06f, 0.7f), true);
             left = Portrait("Left Character", new Vector2(0.04f, 0.20f), new Vector2(0.48f, 0.98f));
             right = Portrait("Right Character", new Vector2(0.52f, 0.20f), new Vector2(0.96f, 0.98f));
+            middle = Portrait("Middle Character", new Vector2(0.35f, 0.28f), new Vector2(0.65f, 0.98f));
             paperRoot = Rect("Conversation Presentation", root.transform, Vector2.zero, Vector2.one);
             Image("Paper Shadow", paperRoot, new Vector2(0.065f, 0.035f), new Vector2(0.945f, 0.255f), new Color(0.08f, 0.06f, 0.06f, 0.9f), false);
             var paper = Image("Dialogue Paper", paperRoot, new Vector2(0.06f, 0.045f), new Vector2(0.94f, 0.265f), paperColor, true);
@@ -65,66 +72,104 @@ namespace AtLightsEnd
             if (root == null || !root.activeSelf) return;
             Color dim = new Color(inactiveBrightness, inactiveBrightness, inactiveBrightness, 1);
             float t = 1f - Mathf.Exp(-12f * Time.unscaledDeltaTime);
-            left.color = Color.Lerp(left.color, speakingLeft ? Color.white : dim, t);
-            right.color = Color.Lerp(right.color, speakingLeft ? dim : Color.white, t);
+            left.color = Color.Lerp(left.color, speakingSide == DialogueAsset.Speaker.Left ? Color.white : dim, t);
+            right.color = Color.Lerp(right.color, speakingSide == DialogueAsset.Speaker.Right ? Color.white : dim, t);
+            middle.color = Color.Lerp(middle.color, speakingSide == DialogueAsset.Speaker.Middle ? Color.white : dim, t);
         }
         public void Show(DialogueAsset dialogue, int index)
         {
-            bool thoughts = dialogue.playerThoughts && thoughtBubble != null;
+            var line = dialogue.lines[index];
+            bool thoughts = dialogue.IsThought(line);
+            bool narration = dialogue.IsNarrator(line);
+            bool portraits = !thoughts && !narration;
             paperRoot.gameObject.SetActive(!thoughts);
             thoughtRoot.gameObject.SetActive(thoughts);
-            left.transform.parent.gameObject.SetActive(!dialogue.playerThoughts);
-            right.transform.parent.gameObject.SetActive(!dialogue.playerThoughts);
-            backdrop.color = dialogue.playerThoughts ? Color.clear : new Color(0.04f, 0.03f, 0.06f, 0.7f);
-            if (!dialogue.playerThoughts)
+            left.transform.parent.gameObject.SetActive(portraits);
+            right.transform.parent.gameObject.SetActive(portraits);
+            middle.transform.parent.gameObject.SetActive(portraits && dialogue.middleCharacter != null);
+            backdrop.color = portraits ? new Color(0.04f, 0.03f, 0.06f, 0.7f) : Color.clear;
+            if (portraits)
             {
                 SetPortrait(left, dialogue.leftCharacter);
                 SetPortrait(right, dialogue.rightCharacter);
+                SetPortrait(middle, dialogue.middleCharacter);
+                bool three = dialogue.middleCharacter != null;
+                SetFrame(left, three ? threePersonLeft : twoPersonLeft);
+                SetFrame(right, three ? threePersonRight : twoPersonRight);
+                SetFrame(middle, threePersonMiddle);
             }
             body = thoughts ? thoughtBody : paperBody;
             speaker = thoughts ? thoughtSpeaker : paperSpeaker;
             counter = thoughts ? thoughtCounter : paperCounter;
             nextLabel = thoughts ? thoughtNext : paperNext;
-            var line = dialogue.lines[index]; speakingLeft = line.speaker == DialogueAsset.Speaker.Left;
-            speaker.text = dialogue.playerThoughts ? PlayerSession.PlayerName :
-                (speakingLeft ? dialogue.leftCharacter.DisplayName : dialogue.rightCharacter.DisplayName);
+            speakingSide = line.speaker;
+            speaker.text = narration ? "Narrator" : thoughts ? PlayerSession.PlayerName : dialogue.CharacterFor(line.speaker).DisplayName;
             string resolvedText = PlayerSession.ResolveText(line.text);
-            if (thoughts) thoughtBubble.setDialogueText(resolvedText);
-            else body.text = resolvedText;
+            body.text = resolvedText;
             body.pageToDisplay = 1;
             counter.text = (index + 1) + " / " + dialogue.lines.Length;
             nextLabel.text = index == dialogue.lines.Length - 1 ? "Ende  ›" : "Weiter  ›";
             if (!root.activeSelf)
             {
-                left.color = speakingLeft ? Color.white : new Color(inactiveBrightness, inactiveBrightness, inactiveBrightness, 1);
-                right.color = !speakingLeft ? Color.white : new Color(inactiveBrightness, inactiveBrightness, inactiveBrightness, 1);
+                Color dim = new Color(inactiveBrightness, inactiveBrightness, inactiveBrightness, 1);
+                left.color = speakingSide == DialogueAsset.Speaker.Left ? Color.white : dim;
+                right.color = speakingSide == DialogueAsset.Speaker.Right ? Color.white : dim;
+                middle.color = speakingSide == DialogueAsset.Speaker.Middle ? Color.white : dim;
             }
             root.SetActive(true);
         }
         private void InitializeThoughtBubble(DialogueController controller)
         {
-            thoughtRoot = Rect("Player Thoughts", root.transform, new Vector2(0.06f, 0.045f), new Vector2(0.94f, 0.40f));
-            if (thoughtBubblePrefab == null) { thoughtRoot.gameObject.SetActive(false); return; }
-            thoughtBubble = Instantiate(thoughtBubblePrefab, thoughtRoot, false);
-            thoughtBubble.name = "Blue Thought Bubble";
-            var rect = thoughtBubble.GetComponent<RectTransform>();
-            rect.anchorMin = Vector2.zero; rect.anchorMax = Vector2.one; rect.offsetMin = rect.offsetMax = Vector2.zero; rect.localScale = Vector3.one;
-            thoughtBubble.setStyle(thoughtBubbleStyle);
-            thoughtBubble.setBubbleType(SpeechBubble.SpeechBubbleType.Think);
-            thoughtBody = thoughtBubble.GetComponentInChildren<TMP_Text>(true);
-            thoughtBody.font = font; thoughtBody.fontSize = 28; thoughtBody.enableAutoSizing = false;
-            thoughtBody.alignment = TextAlignmentOptions.TopLeft; thoughtBody.overflowMode = TextOverflowModes.Page;
-            thoughtBody.rectTransform.anchorMin = new Vector2(0.07f, 0.24f);
-            thoughtBody.rectTransform.anchorMax = new Vector2(0.93f, 0.78f);
-            thoughtBody.rectTransform.offsetMin = thoughtBody.rectTransform.offsetMax = Vector2.zero;
-            foreach (var graphic in thoughtBubble.GetComponentsInChildren<UnityEngine.UI.Graphic>(true)) graphic.raycastTarget = false;
-            thoughtSpeaker = Text("Thought Speaker", thoughtRoot, "", new Vector2(0.07f, 0.79f), new Vector2(0.70f, 0.94f), 27, TextAlignmentOptions.MidlineLeft);
-            thoughtSpeaker.color = thoughtBubbleStyle.dialogueTextColor;
-            thoughtCounter = Text("Thought Progress", thoughtRoot, "", new Vector2(0.07f, 0.07f), new Vector2(0.3f, 0.21f), 20, TextAlignmentOptions.MidlineLeft);
-            thoughtNext = Button("Next Thought", thoughtRoot, "Weiter  ›", new Vector2(0.77f, 0.065f), new Vector2(0.93f, 0.21f), controller.Advance);
-            thoughtNext.transform.parent.GetComponent<UnityEngine.UI.Image>().color = new Color(0.08f, 0.28f, 0.48f, 1);
-            thoughtNext.color = Color.white;
+            Color purple = new Color(0.39f, 0.20f, 0.55f, 1);
+            Color blue = new Color(0.73f, 0.85f, 0.95f, 1);
+            Color tabColor = new Color(0.52f, 0.63f, 0.85f, 1);
+            thoughtRoot = Rect("Player Thoughts", root.transform, Vector2.zero, Vector2.one);
+            var paper = Image("Blue Notebook Paper", thoughtRoot, new Vector2(0.06f, 0.045f), new Vector2(0.94f, 0.31f), blue, true);
+            for (int i = 1; i <= 3; i++)
+            {
+                var rule = Image("Notebook Rule", paper.transform, new Vector2(0.065f, i * 0.23f), new Vector2(0.98f, i * 0.23f), new Color(0.46f, 0.53f, 0.77f, 0.55f), false);
+                rule.rectTransform.sizeDelta = new Vector2(0, 1.5f);
+                var symbol = Image("Thought Symbol", paper.transform, new Vector2(0.012f, 0.12f + (i - 1) * 0.28f), new Vector2(0.043f, 0.33f + (i - 1) * 0.28f), Color.white, false);
+                symbol.sprite = thoughtSymbol; symbol.preserveAspect = true;
+                symbol.enabled = thoughtSymbol != null;
+            }
+            var margin = Image("Notebook Margin", paper.transform, new Vector2(0.052f, 0.04f), new Vector2(0.052f, 0.96f), new Color(0.5f, 0.45f, 0.75f, 0.6f), false);
+            margin.rectTransform.sizeDelta = new Vector2(2, 0);
+            var tab = Image("Thought Name Tab", thoughtRoot, new Vector2(0.08f, 0.31f), new Vector2(0.32f, 0.36f), tabColor, false);
+            thoughtSpeaker = Text("Thought Speaker", tab.transform, "", new Vector2(0.06f, 0), new Vector2(0.96f, 1), 29, TextAlignmentOptions.MidlineLeft);
+            thoughtBody = Text("Thought Text", paper.transform, "", new Vector2(0.075f, 0.25f), new Vector2(0.96f, 0.92f), 29, TextAlignmentOptions.TopLeft);
+            thoughtBody.overflowMode = TextOverflowModes.Page;
+            thoughtCounter = Text("Thought Progress", paper.transform, "", new Vector2(0.075f, 0.03f), new Vector2(0.3f, 0.20f), 20, TextAlignmentOptions.MidlineLeft);
+            thoughtNext = Button("Next Thought", paper.transform, "Weiter  ›", new Vector2(0.79f, 0.045f), new Vector2(0.97f, 0.22f), controller.Advance);
+            var nextBackground = thoughtNext.transform.parent.GetComponent<UnityEngine.UI.Image>();
+            nextBackground.color = tabColor;
+            roundedSprite = MakeRoundedSprite(); nextBackground.sprite = roundedSprite;
+            nextBackground.type = UnityEngine.UI.Image.Type.Sliced;
+            thoughtNext.fontStyle = FontStyles.Bold;
+            thoughtSpeaker.color = thoughtBody.color = thoughtCounter.color = thoughtNext.color = purple;
             thoughtRoot.gameObject.SetActive(false);
+        }
+        private void SetFrame(UnityEngine.UI.RawImage portrait, Rect bounds)
+        {
+            var frame = (RectTransform)portrait.transform.parent;
+            frame.anchorMin = bounds.min; frame.anchorMax = bounds.max;
+            frame.offsetMin = frame.offsetMax = Vector2.zero;
+        }
+        private Sprite MakeRoundedSprite()
+        {
+            var texture = new Texture2D(32, 32, TextureFormat.RGBA32, false);
+            texture.wrapMode = TextureWrapMode.Clamp;
+            for (int y = 0; y < 32; y++) for (int x = 0; x < 32; x++)
+            {
+                float dx = Mathf.Max(8 - x, 0, x - 23), dy = Mathf.Max(8 - y, 0, y - 23);
+                texture.SetPixel(x, y, new Color(1, 1, 1, Mathf.Clamp01(8.5f - Mathf.Sqrt(dx * dx + dy * dy))));
+            }
+            texture.Apply();
+            return Sprite.Create(texture, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 100, 0, SpriteMeshType.FullRect, new Vector4(10, 10, 10, 10));
+        }
+        private void OnDestroy()
+        {
+            if (roundedSprite != null) { Destroy(roundedSprite.texture); Destroy(roundedSprite); }
         }
         public void Hide() { if (root != null) root.SetActive(false); }
         public bool TryAdvancePage()
@@ -136,7 +181,7 @@ namespace AtLightsEnd
         }
         private void SetPortrait(UnityEngine.UI.RawImage image, DialogueCharacter character)
         {
-            if (character == null)
+            if (character == null || character.isPlayerCharacter)
             {
                 image.texture = null;
                 image.enabled = false;
@@ -144,13 +189,56 @@ namespace AtLightsEnd
             }
             image.texture = character.portrait == null ? null : character.portrait.texture;
             image.enabled = image.texture != null;
-            Rect crop = character.portraitRegion;
+            Rect crop = character.autoPortraitRegion && character.portrait != null
+                ? VisiblePortraitBounds(character.portrait) : character.portraitRegion;
             // Upper-body close-up, using UV cropping rather than modifying the original image.
-            crop.y += crop.height * 0.30f; crop.height *= 0.70f;
+            float trim = Mathf.Clamp(character.closeUpBottomCrop, 0, 0.6f);
+            crop.y += crop.height * trim; crop.height *= 1 - trim;
             image.uvRect = crop;
             if (image.texture != null)
                 image.GetComponent<UnityEngine.UI.AspectRatioFitter>().aspectRatio =
                     image.texture.width * crop.width / Mathf.Max(1, image.texture.height * crop.height);
+        }
+        private Rect VisiblePortraitBounds(Sprite sprite)
+        {
+            if (portraitBounds.TryGetValue(sprite, out Rect cached)) return cached;
+            var texture = sprite.texture;
+            Rect source = sprite.textureRect;
+            Rect uv = new Rect(source.x / texture.width, source.y / texture.height,
+                source.width / texture.width, source.height / texture.height);
+            // Read a small temporary copy: source textures do not need Read/Write enabled.
+            const int resolution = 512;
+            var target = RenderTexture.GetTemporary(resolution, resolution, 0, RenderTextureFormat.ARGB32);
+            var previous = RenderTexture.active;
+            Texture2D readable = null;
+            try
+            {
+                Graphics.Blit(texture, target, uv.size, uv.position);
+                RenderTexture.active = target;
+                readable = new Texture2D(resolution, resolution, TextureFormat.RGBA32, false);
+                readable.ReadPixels(new Rect(0, 0, resolution, resolution), 0, 0);
+                readable.Apply();
+                var pixels = readable.GetPixels32();
+                int minX = resolution, minY = resolution, maxX = -1, maxY = -1;
+                for (int y = 0; y < resolution; y++) for (int x = 0; x < resolution; x++)
+                    if (pixels[y * resolution + x].a >= 26)
+                    { minX = Mathf.Min(minX, x); minY = Mathf.Min(minY, y); maxX = Mathf.Max(maxX, x); maxY = Mathf.Max(maxY, y); }
+                if (maxX >= minX && maxY >= minY)
+                {
+                    minX = Mathf.Max(0, minX - 2); minY = Mathf.Max(0, minY - 2);
+                    maxX = Mathf.Min(resolution - 1, maxX + 2); maxY = Mathf.Min(resolution - 1, maxY + 2);
+                    uv = new Rect(uv.x + uv.width * minX / resolution, uv.y + uv.height * minY / resolution,
+                        uv.width * (maxX - minX + 1) / resolution, uv.height * (maxY - minY + 1) / resolution);
+                }
+                portraitBounds[sprite] = uv;
+                return uv;
+            }
+            finally
+            {
+                RenderTexture.active = previous;
+                RenderTexture.ReleaseTemporary(target);
+                if (readable != null) Destroy(readable);
+            }
         }
         private UnityEngine.UI.RawImage Portrait(string name, Vector2 min, Vector2 max)
         {

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
+  m_Name: Narrator_Cafeteria_Day1
+  m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  leftCharacter: {fileID: 0}
+  rightCharacter: {fileID: 0}
+  middleCharacter: {fileID: 0}
+  narrator: 1
+  playerThoughts: 0
+  lines:
+  - speaker: 0
+    kind: 0
+    text: "The cafeteria bustles with noise, students chattering and laughing while
+      they eat. You try to blend in with the crowd as much as possible, doing your
+      best to remain unnoticed. You must be doing a well enough job at it, as no
+      one has questioned your shifty behaviour yet. Inwardly, you can\u2019t help
+      but feel proud of your successful sneak-infiltration. You survey the room,
+      trying to pick a conversation to listen in on. "
+    videoEventId: 

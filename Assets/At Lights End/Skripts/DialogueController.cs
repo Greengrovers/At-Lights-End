@@ -86,12 +86,6 @@ namespace AtLightsEnd
             lineIndex = 0;
             if (hovered != null) hovered.SetHighlighted(false);
             hovered = null;
-            if (!dialogue.playerThoughts)
-            foreach (var sceneActor in FindObjectsByType<DialogueActor>(FindObjectsSortMode.None))
-            {
-                var renderer = sceneActor.GetComponent<SpriteRenderer>();
-                if (renderer != null && renderer.enabled) { hiddenActors.Add(renderer); renderer.enabled = false; }
-            }
             if (inspection != null) { inspection.EndInspection(); inspectionWasEnabled = inspection.enabled; inspection.enabled = false; }
             if (navigation != null) { navigationWasEnabled = navigation.enabled; navigation.enabled = false; }
             if (hints != null) { hintsWereEnabled = hints.enabled; hints.enabled = false; }
@@ -100,7 +94,7 @@ namespace AtLightsEnd
                 uiAlpha = explorationUI.alpha; uiInteractable = explorationUI.interactable; uiBlocks = explorationUI.blocksRaycasts;
                 explorationUI.alpha = 0; explorationUI.interactable = false; explorationUI.blocksRaycasts = false;
             }
-            view.Show(conversation, lineIndex);
+            PresentLine();
             RoomVideoEvent.Trigger(conversation.lines[lineIndex].videoEventId);
             return true;
         }
@@ -111,7 +105,7 @@ namespace AtLightsEnd
             if (++lineIndex >= conversation.lines.Length) End();
             else
             {
-                view.Show(conversation, lineIndex);
+                PresentLine();
                 RoomVideoEvent.Trigger(conversation.lines[lineIndex].videoEventId);
             }
         }
@@ -128,6 +122,19 @@ namespace AtLightsEnd
             if (hints != null) hints.enabled = hintsWereEnabled;
             if (explorationUI != null)
             { explorationUI.alpha = uiAlpha; explorationUI.interactable = uiInteractable; explorationUI.blocksRaycasts = uiBlocks; }
+        }
+        private void PresentLine()
+        {
+            foreach (var renderer in hiddenActors) if (renderer != null) renderer.enabled = true;
+            hiddenActors.Clear();
+            var line = conversation.lines[lineIndex];
+            if (!conversation.IsThought(line) && !conversation.IsNarrator(line))
+                foreach (var sceneActor in FindObjectsByType<DialogueActor>(FindObjectsSortMode.None))
+                {
+                    var renderer = sceneActor.GetComponent<SpriteRenderer>();
+                    if (renderer != null && renderer.enabled) { hiddenActors.Add(renderer); renderer.enabled = false; }
+                }
+            view.Show(conversation, lineIndex);
         }
         private void OnDisable()
         {

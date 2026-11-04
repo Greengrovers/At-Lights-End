@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
+  m_Name: Danica_Class_Day1_Phone
+  m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  leftCharacter: {fileID: 11400000, guid: bce291fb00386af4fbefcd7fdf5ad4c9, type: 2}
+  rightCharacter: {fileID: 0}
+  middleCharacter: {fileID: 0}
+  narrator: 0
+  playerThoughts: 0
+  lines:
+  - speaker: 0
+    kind: 0
+    text: "-yeah and then I told him to buzz off. You should\u2019ve seen the look
+      on his face, it was priceless. "
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: ---
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "Ahh alright gotcha, well have fun with that, I guess. At least you\u2019re
+      not the only one missing, that weirdo Bradley and his lackeys always pick on
+      isn\u2019t here either. Maybe finally took the hint and switched schools or
+      something. Was weirdly happy the past few days too, as if they\u2019d already
+      found a new place that\u2019d take \u2018em."
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: ---
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: '*laughs* you think so?? Yeah, I can imagine that, seems cowardly enough. '
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: ---
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "Wouldn\u2019t be the first time. But anyway, I gotta go, I heard that
+      there\u2019s been a fight in the cafeteria yesterday and I missed it. I\u2019ve
+      gotta get my hands on all the juicy details as long as they\u2019re still hot,
+      yknow? No one likes their tea cold after all, hahah. "
+    videoEventId: 
+  - speaker: 1
+    kind: 1
+    text: "The cafeteria, huh? Sounds like I\u2019ll be able to overhear more there.  "
+    videoEventId: 

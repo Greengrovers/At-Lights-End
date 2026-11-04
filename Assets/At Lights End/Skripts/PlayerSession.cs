@@ -15,6 +15,14 @@ namespace AtLightsEnd
         private static readonly List<InventoryEntry> inventory = new List<InventoryEntry>();
         private static readonly HashSet<string> collected = new HashSet<string>();
         private static readonly HashSet<string> visited = new HashSet<string>();
+        private static readonly Dictionary<string, int> roomVisits = new Dictionary<string, int>();
+        public static int RecordRoomEntry(string id)
+        {
+            roomVisits.TryGetValue(id, out int count);
+            roomVisits[id] = count + 1;
+            return count + 1;
+        }
+        public static int RoomVisits(string id) => roomVisits.TryGetValue(id, out int count) ? count : 0;
         public static IReadOnlyList<InventoryEntry> Inventory => inventory;
         public static string PlayerName { get; private set; } = "";
         public static bool HasPlayerName => !string.IsNullOrWhiteSpace(PlayerName);
@@ -29,6 +37,7 @@ namespace AtLightsEnd
         private static void ResetRun()
         {
             inventory.Clear(); collected.Clear(); visited.Clear();
+            roomVisits.Clear();
             PlayerName = ""; IsNight = InventoryOpen = IsLoading = false;
             CinematicPlaying = false;
             InventoryChanged = null;

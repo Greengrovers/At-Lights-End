@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
+  m_Name: Chris_Sean_Marcie_Cafeteria_Day1_Visit1
+  m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  leftCharacter: {fileID: 11400000, guid: 8521890f5bd3143489a5b7db6a924f5f, type: 2}
+  rightCharacter: {fileID: 11400000, guid: b75e22ed8b484b640b03673edd45bf23, type: 2}
+  middleCharacter: {fileID: 11400000, guid: 004f9e8323affd446ac900f00cf112f7, type: 2}
+  narrator: 0
+  playerThoughts: 0
+  lines:
+  - speaker: 0
+    kind: 0
+    text: "yeah apparently she broke up with him after just a week of dating. Dude,
+      I tell you man she was such a baddie man! If I\u2019d have been the one to
+      fumble her, you\u2019d never have seen my face again man"
+    videoEventId: 
+  - speaker: 2
+    kind: 0
+    text: "Sucks to suck bro, and Lucas sucks real bad so I\u2019m not surprised
+      he fucked up, lol."
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: "You just can\u2019t Eugh, never say \u2018lol\u2019 out loud ever again
+      dude, that\u2019s just horrible. "
+    videoEventId: 
+  - speaker: 2
+    kind: 0
+    text: "You just can\u2019t handle my swag broski. Anyway, what\u2019d he actually
+      do? Did he like... chew with his mouth open in front of her or something? Or
+      kicked a puppy? "
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "Something like that. She found out he\u2019s one of Bradley\u2019s friends
+      and they had a huge argument."
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: "She didn\u2019t know? Thought his group of assholes was pretty well known."
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "Nah, she goes to that all-girls school a few streets over, so she didn\u2019t
+      know them. Or not enough to recognize \u2018em by their faces anyway, since
+      she at least seemed to know about the rumours. Broke up immediately after."
+    videoEventId: 
+  - speaker: 2
+    kind: 0
+    text: "Ah, so she figured out he\u2019s an incorrigible bully and dumped his
+      ass? Hah, get fucked. "
+    videoEventId: 

@@ -4,7 +4,7 @@
 
 Starte `Assets/At Lights End/Scenes/Shool Day.unity`. Vor dem ersten Raumdialog erscheint die Namenseingabe. Name, besuchte Räume und Inventar gelten nur bis zum Beenden des Spieldurchlaufs; es werden keine Spielstände geschrieben.
 
-Im Dialog-Asset aktiviert **Player Thoughts** die blaue Gedankenblase (Speech Bubble, Stil `cloud`, Form `Think`). Dabei gibt es keine Porträts oder Nahansichten. Der Sprechername wird automatisch durch den eingegebenen Namen ersetzt. In Dialogtexten setzt `{playerName}` den Namen ein, etwa: `Du bist also {playerName}.` Bestehende Texte bleiben unverändert.
+Im Dialog-Asset aktiviert **Player Thoughts** die blaue Notizbuchbox mit dem eigenen Symbol, lila Schrift und abgerundetem Weiter-Button. Dabei gibt es keine Porträts oder Nahansichten. Der Sprechername wird automatisch durch den eingegebenen Namen ersetzt. In Dialogtexten setzt `{playerName}` den Namen ein, etwa: `Du bist also {playerName}.` Narrator-Zeilen können über **Kind → Narrator** eingefügt werden; siehe `Day1_Cast_README.md`.
 
 `Mein Character.asset` ist als **Is Player Character** markiert. Normale Gespräche behalten das Papierfeld und ihre Porträts. Die Raumdialoge werden pro Raum und Szene nur einmal je Spieldurchlauf gestartet.
 

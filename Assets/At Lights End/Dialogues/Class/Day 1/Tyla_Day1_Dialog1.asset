@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
-  m_Name: Demo_Tyla
+  m_Name: Tyla_Day1_Dialog1
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
   leftCharacter: {fileID: 11400000, guid: ef401f3d840ef2e46a0108e21edc86b2, type: 2}
   rightCharacter: {fileID: 11400000, guid: 7d6b1249e3d6a18448f0388d9effbb35, type: 2}
@@ -21,6 +21,9 @@ MonoBehaviour:
     videoEventId: cat-shadow
   - speaker: 1
     text: Vielleicht. Lass uns den Raum genauer ansehen.
+    videoEventId: 
+  - speaker: 0
+    text: Dann fangen wir hier an.
     videoEventId: 
   - speaker: 0
     text: Dann fangen wir hier an.
