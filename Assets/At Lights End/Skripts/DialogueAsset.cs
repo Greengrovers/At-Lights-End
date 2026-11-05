@@ -7,6 +7,18 @@ namespace AtLightsEnd
     [CreateAssetMenu(menuName = "At Lights End/Dialogue/Conversation", fileName = "New Conversation")]
     public sealed class DialogueAsset : ScriptableObject
     {
+        [Serializable] public sealed class PortraitLayout
+        {
+            public Rect twoPersonLeft, twoPersonRight, threePersonLeft, threePersonMiddle, threePersonRight;
+            public float twoPersonLeftScale = 1, twoPersonRightScale = 1;
+            public float threePersonLeftScale = 1, threePersonMiddleScale = 1, threePersonRightScale = 1;
+            public Rect Frame(Speaker side, bool three) => side == Speaker.Middle ? threePersonMiddle :
+                side == Speaker.Left ? (three ? threePersonLeft : twoPersonLeft) : (three ? threePersonRight : twoPersonRight);
+            public float Scale(Speaker side, bool three) => side == Speaker.Middle ? threePersonMiddleScale :
+                side == Speaker.Left ? (three ? threePersonLeftScale : twoPersonLeftScale) : (three ? threePersonRightScale : twoPersonRightScale);
+        }
+        [HideInInspector] public bool hasPortraitLayout;
+        [HideInInspector] public PortraitLayout portraitLayout = new PortraitLayout();
         public DialogueCharacter leftCharacter;
         public DialogueCharacter rightCharacter;
         public DialogueCharacter middleCharacter;

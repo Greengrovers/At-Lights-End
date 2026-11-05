@@ -16,6 +16,13 @@ namespace AtLightsEnd
         [SerializeField] private Rect threePersonLeft = new Rect(0.025f, 0.20f, 0.31f, 0.78f);
         [SerializeField] private Rect threePersonMiddle = new Rect(0.345f, 0.20f, 0.31f, 0.78f);
         [SerializeField] private Rect threePersonRight = new Rect(0.665f, 0.20f, 0.31f, 0.78f);
+        [SerializeField, Range(0.25f, 2f)] private float twoPersonLeftScale = 1f;
+        [SerializeField, Range(0.25f, 2f)] private float twoPersonRightScale = 1f;
+        [SerializeField, Range(0.25f, 2f)] private float threePersonLeftScale = 1f;
+        [SerializeField, Range(0.25f, 2f)] private float threePersonMiddleScale = 1f;
+        [SerializeField, Range(0.25f, 2f)] private float threePersonRightScale = 1f;
+        private bool threePeople;
+        private DialogueAsset currentDialogue;
         private readonly System.Collections.Generic.Dictionary<Sprite, Rect> portraitBounds = new System.Collections.Generic.Dictionary<Sprite, Rect>();
         private GameObject root;
         private UnityEngine.UI.RawImage left, right, middle;
@@ -28,8 +35,9 @@ namespace AtLightsEnd
         private TMP_Text thoughtBody, thoughtSpeaker, thoughtCounter, thoughtNext;
         public Color LeftTint => left.color;
         public Color RightTint => right.color;
-        public Rect GetPortraitFrame(DialogueAsset.Speaker side, bool threePeople)
+        public Rect GetPortraitFrame(DialogueAsset.Speaker side, bool threePeople, DialogueAsset dialogue = null)
         {
+            if (dialogue != null && dialogue.hasPortraitLayout) return dialogue.portraitLayout.Frame(side, threePeople);
             if (side == DialogueAsset.Speaker.Middle) return threePersonMiddle;
             return side == DialogueAsset.Speaker.Left
                 ? (threePeople ? threePersonLeft : twoPersonLeft)
@@ -44,6 +52,14 @@ namespace AtLightsEnd
             return crop;
         }
         public void ClearPortraitPreviewCache() => portraitBounds.Clear();
+        public float GetPortraitScale(DialogueAsset.Speaker side, bool three, DialogueAsset dialogue = null)
+        {
+            if (dialogue != null && dialogue.hasPortraitLayout) return dialogue.portraitLayout.Scale(side, three);
+            if (side == DialogueAsset.Speaker.Middle) return threePersonMiddleScale;
+            return side == DialogueAsset.Speaker.Left
+                ? (three ? threePersonLeftScale : twoPersonLeftScale)
+                : (three ? threePersonRightScale : twoPersonRightScale);
+        }
 
         public void Initialize(DialogueController controller)
         {
@@ -110,12 +126,15 @@ namespace AtLightsEnd
             {
                 if (!portrait.isActiveAndEnabled || portrait.texture == null) continue;
                 float aspect = portrait.GetComponent<UnityEngine.UI.AspectRatioFitter>().aspectRatio;
-                portrait.rectTransform.sizeDelta = new Vector2(height * aspect, height);
+                var side = portrait == left ? DialogueAsset.Speaker.Left : portrait == middle ? DialogueAsset.Speaker.Middle : DialogueAsset.Speaker.Right;
+                float scaledHeight = height * GetPortraitScale(side, threePeople, currentDialogue);
+                portrait.rectTransform.sizeDelta = new Vector2(scaledHeight * aspect, scaledHeight);
                 portrait.rectTransform.anchoredPosition = Vector2.zero;
             }
         }
         public void Show(DialogueAsset dialogue, int index)
         {
+            currentDialogue = dialogue;
             var line = dialogue.lines[index];
             bool thoughts = dialogue.IsThought(line);
             bool narration = dialogue.IsNarrator(line);
@@ -132,9 +151,10 @@ namespace AtLightsEnd
                 SetPortrait(right, dialogue.rightCharacter);
                 SetPortrait(middle, dialogue.middleCharacter);
                 bool three = dialogue.middleCharacter != null;
-                SetFrame(left, three ? threePersonLeft : twoPersonLeft);
-                SetFrame(right, three ? threePersonRight : twoPersonRight);
-                SetFrame(middle, threePersonMiddle);
+                threePeople = three;
+                SetFrame(left, GetPortraitFrame(DialogueAsset.Speaker.Left, three, dialogue));
+                SetFrame(right, GetPortraitFrame(DialogueAsset.Speaker.Right, three, dialogue));
+                SetFrame(middle, GetPortraitFrame(DialogueAsset.Speaker.Middle, three, dialogue));
             }
             body = thoughts ? thoughtBody : paperBody;
             speaker = thoughts ? thoughtSpeaker : paperSpeaker;
@@ -305,7 +325,6 @@ namespace AtLightsEnd
         private UnityEngine.UI.RawImage Portrait(string name, Vector2 min, Vector2 max)
         {
             var holder = Rect(name + " Frame", root.transform, min, max);
-            holder.gameObject.AddComponent<UnityEngine.UI.RectMask2D>();
             // Size all visible portraits together in LateUpdate, anchored at the baseline.
             var rect = Rect(name, holder, new Vector2(0.5f, 0), new Vector2(0.5f, 0));
             rect.pivot = new Vector2(0.5f, 0);

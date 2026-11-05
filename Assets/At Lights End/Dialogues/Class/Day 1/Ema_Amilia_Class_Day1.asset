@@ -12,6 +12,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
   m_Name: Ema_Amilia_Class_Day1
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  hasPortraitLayout: 1
+  portraitLayout:
+    twoPersonLeft:
+      serializedVersion: 2
+      x: 0.04
+      y: 0.2
+      width: 0.44
+      height: 0.78
+    twoPersonRight:
+      serializedVersion: 2
+      x: 0.52
+      y: 0.2
+      width: 0.44
+      height: 0.78
+    threePersonLeft:
+      serializedVersion: 2
+      x: 0.04
+      y: 0.173
+      width: 0.304
+      height: 0.722
+    threePersonMiddle:
+      serializedVersion: 2
+      x: 0.345
+      y: 0.27
+      width: 0.31
+      height: 0.69
+    threePersonRight:
+      serializedVersion: 2
+      x: 0.665
+      y: 0.2
+      width: 0.31
+      height: 0.78
+    twoPersonLeftScale: 0.8
+    twoPersonRightScale: 0.8
+    threePersonLeftScale: 0.8
+    threePersonMiddleScale: 1
+    threePersonRightScale: 1.094
   leftCharacter: {fileID: 11400000, guid: abeded51726329947b51a66cc2c2b276, type: 2}
   rightCharacter: {fileID: 11400000, guid: 47f42149c6719514db801b795a535dc3, type: 2}
   middleCharacter: {fileID: 0}

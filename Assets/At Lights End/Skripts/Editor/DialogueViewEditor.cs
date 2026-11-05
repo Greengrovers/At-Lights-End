@@ -20,8 +20,8 @@ namespace AtLightsEnd.Editor
         {
             syncSliders.Clear();
             var root = new VisualElement();
-            root.Add(new HelpBox("Sprecherpositionen hier einstellen – kein Play-Modus nötig. Änderungen gelten für diese Dialogue View. Szene anschließend speichern. Strg+Z macht Änderungen rückgängig.", HelpBoxMessageType.Info));
-            var field = new ObjectField("Vorschau-Dialog") { objectType = typeof(DialogueAsset), allowSceneObjects = false };
+            root.Add(new HelpBox("Sprecherpositionen hier einstellen – kein Play-Modus nötig. Position und Größe werden nur im ausgewählten Dialog-Asset gespeichert. Strg+Z macht Änderungen rückgängig.", HelpBoxMessageType.Info));
+            var field = new ObjectField("Dialog bearbeiten") { objectType = typeof(DialogueAsset), allowSceneObjects = false };
             if (conversation == null)
                 conversation = AssetDatabase.LoadAssetAtPath<DialogueAsset>("Assets/At Lights End/Dialogues/Cafeteria/Day 1/Chris_Sean_Marcie_Cafeteria_Day1_Visit1.asset");
             field.SetValueWithoutNotify(conversation);
@@ -32,7 +32,7 @@ namespace AtLightsEnd.Editor
             {
                 conversation = (DialogueAsset)e.newValue; lineIndex = 0;
                 line.highValue = Mathf.Max(1, conversation == null ? 1 : conversation.lines.Length);
-                line.SetValueWithoutNotify(1); View.ClearPortraitPreviewCache(); DrawPreview();
+                line.SetValueWithoutNotify(1); View.ClearPortraitPreviewCache(); RefreshSliders();
             });
             line.RegisterValueChangedCallback(e => { lineIndex = e.newValue - 1; DrawPreview(); });
             var ratios = new PopupField<string>("Bildformat", new List<string> { "16:9", "4:3", "21:9" }, 0);
@@ -44,7 +44,7 @@ namespace AtLightsEnd.Editor
             preview.RegisterCallback<GeometryChangedEvent>(_ => DrawPreview());
             root.Add(preview);
             root.Add(new Button(() => { View.ClearPortraitPreviewCache(); DrawPreview(); }) { text = "Vorschau aktualisieren" });
-            root.Add(new HelpBox("X = links/rechts, Y = unten/oben. Breite und Höhe begrenzen den verfügbaren Platz. Alle sichtbaren Figuren teilen sich die größte Höhe, die in sämtliche Plätze passt. Der breiteste Charakter kann daher die gemeinsame Größe begrenzen.", HelpBoxMessageType.None));
+            root.Add(new HelpBox("X/Y verschieben den Platz. Breite/Höhe bestimmen die gemeinsame Ausgangsgröße. Sprite-Größe skaliert nur diese Figur: 1 = 100 %. Der untere Mittelpunkt bleibt fest. Große Figuren können sich überlappen oder über den Bildschirmrand reichen.", HelpBoxMessageType.None));
             AddSlot(root, "Zweierdialog – Links", "twoPersonLeft");
             AddSlot(root, "Zweierdialog – Rechts", "twoPersonRight");
             AddSlot(root, "Dreierdialog – Links", "threePersonLeft");
@@ -55,8 +55,39 @@ namespace AtLightsEnd.Editor
                 other.Add(new PropertyField(serializedObject.FindProperty(name)));
             root.Add(other);
             root.TrackSerializedObjectValue(serializedObject, _ => { foreach (var sync in syncSliders) sync(); DrawPreview(); });
-            root.RegisterCallback<AttachToPanelEvent>(_ => DrawPreview());
+            root.RegisterCallback<AttachToPanelEvent>(_ => { Undo.undoRedoPerformed += RefreshSliders; DrawPreview(); });
+            root.RegisterCallback<DetachFromPanelEvent>(_ => Undo.undoRedoPerformed -= RefreshSliders);
             return root;
+        }
+
+        private void RefreshSliders()
+        {
+            foreach (var sync in syncSliders) sync();
+            DrawPreview();
+        }
+
+        private SerializedProperty ReadLayoutProperty(string name)
+        {
+            if (conversation != null && conversation.hasPortraitLayout)
+                return new SerializedObject(conversation).FindProperty("portraitLayout." + name);
+            serializedObject.Update();
+            return serializedObject.FindProperty(name);
+        }
+
+        private SerializedObject EditableLayout()
+        {
+            var data = new SerializedObject(conversation);
+            if (!conversation.hasPortraitLayout)
+            {
+                serializedObject.Update();
+                foreach (string name in new[] { "twoPersonLeft", "twoPersonRight", "threePersonLeft", "threePersonMiddle", "threePersonRight" })
+                {
+                    data.FindProperty("portraitLayout." + name).rectValue = serializedObject.FindProperty(name).rectValue;
+                    data.FindProperty("portraitLayout." + name + "Scale").floatValue = serializedObject.FindProperty(name + "Scale").floatValue;
+                }
+                data.FindProperty("hasPortraitLayout").boolValue = true;
+            }
+            return data;
         }
 
         private void AddSlot(VisualElement parent, string title, string propertyName)
@@ -70,22 +101,39 @@ namespace AtLightsEnd.Editor
                 System.Action sync = () =>
                 {
                     if (target == null) return;
-                    serializedObject.Update(); var r = serializedObject.FindProperty(propertyName).rectValue;
+                    var r = ReadLayoutProperty(propertyName).rectValue;
                     slider.SetValueWithoutNotify(part == 0 ? r.x : part == 1 ? r.y : part == 2 ? r.width : r.height);
                 };
                 syncSliders.Add(sync); sync();
                 slider.RegisterValueChangedCallback(e =>
                 {
-                    serializedObject.Update(); var prop = serializedObject.FindProperty(propertyName); var r = prop.rectValue;
+                    if (conversation == null) return; var data = EditableLayout(); var prop = data.FindProperty("portraitLayout." + propertyName); var r = prop.rectValue;
                     if (part == 0) r.x = Mathf.Clamp(e.newValue, 0, 1 - r.width);
                     else if (part == 1) r.y = Mathf.Clamp(e.newValue, 0, 1 - r.height);
                     else if (part == 2) r.width = Mathf.Clamp(e.newValue, 0.05f, 1 - r.x);
                     else r.height = Mathf.Clamp(e.newValue, 0.05f, 1 - r.y);
-                    prop.rectValue = r; serializedObject.ApplyModifiedProperties();
+                    prop.rectValue = r; data.ApplyModifiedProperties(); AssetDatabase.SaveAssetIfDirty(conversation);
                     sync(); DrawPreview();
                 });
                 foldout.Add(slider);
             }
+            string scaleProperty = propertyName + "Scale";
+            var size = new Slider("Sprite-Größe", 0.25f, 2f) { name = scaleProperty, showInputField = true };
+            System.Action syncSize = () =>
+            {
+                if (target == null) return;
+                serializedObject.Update();
+                size.SetValueWithoutNotify(ReadLayoutProperty(scaleProperty).floatValue);
+            };
+            syncSliders.Add(syncSize); syncSize();
+            size.RegisterValueChangedCallback(e =>
+            {
+                serializedObject.Update();
+                if (conversation == null) return; var data = EditableLayout(); data.FindProperty("portraitLayout." + scaleProperty).floatValue = Mathf.Clamp(e.newValue, 0.25f, 2f);
+                data.ApplyModifiedProperties(); AssetDatabase.SaveAssetIfDirty(conversation);
+                syncSize(); DrawPreview();
+            });
+            foldout.Add(size);
         }
 
         private void Place(VisualElement element, Rect normalized, float width, float height)
@@ -115,7 +163,7 @@ namespace AtLightsEnd.Editor
                 {
                     var c = conversation.CharacterFor(side);
                     if (c == null || c.isPlayerCharacter || c.portrait == null) continue;
-                    Rect frame = View.GetPortraitFrame(side, three), crop = View.GetPortraitCrop(c);
+                    Rect frame = View.GetPortraitFrame(side, three, conversation), crop = View.GetPortraitCrop(c);
                     float ratio = c.portrait.texture.width * crop.width / Mathf.Max(1, c.portrait.texture.height * crop.height);
                     sharedHeight = Mathf.Min(sharedHeight, frame.height * height, frame.width * width / ratio);
                 }
@@ -123,7 +171,7 @@ namespace AtLightsEnd.Editor
                 {
                     var c = conversation.CharacterFor(side);
                     if (c == null || c.isPlayerCharacter || c.portrait == null) continue;
-                    Rect frame = View.GetPortraitFrame(side, three), crop = View.GetPortraitCrop(c);
+                    Rect frame = View.GetPortraitFrame(side, three, conversation), crop = View.GetPortraitCrop(c);
                     float ratio = c.portrait.texture.width * crop.width / Mathf.Max(1, c.portrait.texture.height * crop.height);
                     var guide = new VisualElement(); Place(guide, frame, width, height);
                     guide.style.borderLeftWidth = guide.style.borderRightWidth = guide.style.borderTopWidth = guide.style.borderBottomWidth = 1;
@@ -132,7 +180,8 @@ namespace AtLightsEnd.Editor
                     var image = new Image { image = c.portrait.texture, uv = crop, scaleMode = ScaleMode.StretchToFill };
                     float brightness = line.speaker == side ? 1 : serializedObject.FindProperty("inactiveBrightness").floatValue;
                     image.tintColor = new Color(brightness, brightness, brightness, 1);
-                    var rect = new Rect(frame.center.x - sharedHeight * ratio / width / 2, frame.y, sharedHeight * ratio / width, sharedHeight / height);
+                    float scaledHeight = sharedHeight * View.GetPortraitScale(side, three, conversation);
+                    var rect = new Rect(frame.center.x - scaledHeight * ratio / width / 2, frame.y, scaledHeight * ratio / width, scaledHeight / height);
                     Place(image, rect, width, height); preview.Add(image);
                 }
             }

@@ -12,6 +12,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
   m_Name: Chris_Sean_Marcie_Cafeteria_Day1_Visit1
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  hasPortraitLayout: 1
+  portraitLayout:
+    twoPersonLeft:
+      serializedVersion: 2
+      x: 0.04
+      y: 0.2
+      width: 0.44
+      height: 0.78
+    twoPersonRight:
+      serializedVersion: 2
+      x: 0.52
+      y: 0.2
+      width: 0.44
+      height: 0.78
+    threePersonLeft:
+      serializedVersion: 2
+      x: 0.04
+      y: 0.21700001
+      width: 0.304
+      height: 0.783
+    threePersonMiddle:
+      serializedVersion: 2
+      x: 0.345
+      y: 0.229
+      width: 0.31
+      height: 0.69
+    threePersonRight:
+      serializedVersion: 2
+      x: 0.665
+      y: 0.2
+      width: 0.31
+      height: 0.78
+    twoPersonLeftScale: 1
+    twoPersonRightScale: 1
+    threePersonLeftScale: 1.649
+    threePersonMiddleScale: 1.649
+    threePersonRightScale: 1.649
   leftCharacter: {fileID: 11400000, guid: 8521890f5bd3143489a5b7db6a924f5f, type: 2}
   rightCharacter: {fileID: 11400000, guid: b75e22ed8b484b640b03673edd45bf23, type: 2}
   middleCharacter: {fileID: 11400000, guid: 004f9e8323affd446ac900f00cf112f7, type: 2}

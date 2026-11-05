@@ -12,6 +12,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
   m_Name: Danica_Steve_Eve_Cafeteria_Day1_Visit2
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  hasPortraitLayout: 1
+  portraitLayout:
+    twoPersonLeft:
+      serializedVersion: 2
+      x: 0.04
+      y: 0.2
+      width: 0.44
+      height: 0.78
+    twoPersonRight:
+      serializedVersion: 2
+      x: 0.52
+      y: 0.2
+      width: 0.44
+      height: 0.78
+    threePersonLeft:
+      serializedVersion: 2
+      x: 0.04
+      y: 0.124
+      width: 0.304
+      height: 0.722
+    threePersonMiddle:
+      serializedVersion: 2
+      x: 0.345
+      y: 0.155
+      width: 0.31
+      height: 0.69
+    threePersonRight:
+      serializedVersion: 2
+      x: 0.665
+      y: 0.07
+      width: 0.31
+      height: 0.78
+    twoPersonLeftScale: 1
+    twoPersonRightScale: 1
+    threePersonLeftScale: 1.25
+    threePersonMiddleScale: 1.25
+    threePersonRightScale: 1.25
   leftCharacter: {fileID: 11400000, guid: bce291fb00386af4fbefcd7fdf5ad4c9, type: 2}
   rightCharacter: {fileID: 11400000, guid: 42846e5f573437e44bc0f0e3692fe7d5, type: 2}
   middleCharacter: {fileID: 11400000, guid: 68114dd70c4698842b14d0ce7d7e314b, type: 2}
