@@ -69,24 +69,17 @@ MonoBehaviour:
     videoEventId: 
   - speaker: 0
     kind: 0
-    text: "Come on, it\u2019s not even that bad, it\u2019s just a few essays. And
-      at least you\u2019re not that one guy from the class below us. I heard he had
-      a run-in with Bradley and got pushed into the fountain. His whole backpack
-      was completely soaked and his homework absolutely ruined."
-    videoEventId: 
-  - speaker: 1
-    kind: 0
     text: "Yeesh, yeah I definitely wouldn\u2019t wanna be him. Did his teacher at
       least understand?."
     videoEventId: 
-  - speaker: 0
+  - speaker: 1
     kind: 0
     text: "Nope, he gave the poor sucker a write-up in the class book for \u2018making
       up excuses\u2019 for not having done his homework. He missed the entire day
       today, probably to try and write everything anew as quickly as possible."
     videoEventId: 
-  - speaker: 1
+  - speaker: 0
     kind: 0
     text: "What?? That\u2019s wayyy too harsh. Which teach was it, Mr. Dickings?
-      That guy\u2019s a major asshole. "
+      That guy\u2019s a major asshole."
     videoEventId: 
