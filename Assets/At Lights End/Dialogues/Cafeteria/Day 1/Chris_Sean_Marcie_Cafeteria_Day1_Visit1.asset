@@ -46,7 +46,7 @@ MonoBehaviour:
       height: 0.78
     twoPersonLeftScale: 1
     twoPersonRightScale: 1
-    threePersonLeftScale: 1.408
+    threePersonLeftScale: 0.45
     threePersonMiddleScale: 1.231
     threePersonRightScale: 1.108
   leftCharacter: {fileID: 11400000, guid: 8521890f5bd3143489a5b7db6a924f5f, type: 2}
