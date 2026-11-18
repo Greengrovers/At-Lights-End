@@ -20,6 +20,14 @@ namespace AtLightsEnd
         private float uiAlpha;
         private DialogueActor hovered, actor;
         private DialogueAsset conversation;
+        private DialogueAsset hintThought;
+        private static readonly string[] hintReactions =
+        {
+            "I really should write that down.",
+            "This seems to be important.",
+            "I might need this later."
+        };
+        private System.Action onCompleted;
         private bool requiresActor;
         private int lineIndex;
         private readonly List<UnityEngine.EventSystems.RaycastResult> uiHits = new List<UnityEngine.EventSystems.RaycastResult>();
@@ -42,6 +50,7 @@ namespace AtLightsEnd
                 if (close) End(); else if (next) Advance();
                 return;
             }
+            if (GameSceneContext.Current != null && GameSceneContext.Current.IsOpening) return;
             DialogueActor candidate = null;
             if (sceneCamera != null && (navigation == null || !navigation.IsTransitioning) &&
                 (inspection == null || !inspection.IsInspecting) && !OverUI(pointer))
@@ -75,7 +84,7 @@ namespace AtLightsEnd
         }
 
         // Allows room intros and other scripted events without a clickable scene actor.
-        public bool TryBeginConversation(DialogueAsset dialogue, DialogueActor source = null)
+        public bool TryBeginConversation(DialogueAsset dialogue, DialogueActor source = null, System.Action completed = null)
         {
             if (PlayerSession.BlocksWorldInput || !isActiveAndEnabled || IsOpen || dialogue == null || !dialogue.IsValid ||
                 (source != null && !source.isActiveAndEnabled) ||
@@ -83,6 +92,8 @@ namespace AtLightsEnd
             actor = source;
             requiresActor = source != null;
             conversation = dialogue;
+            onCompleted = completed;
+            view.SetCloseVisible(completed == null);
             lineIndex = 0;
             if (hovered != null) hovered.SetHighlighted(false);
             hovered = null;
@@ -102,16 +113,54 @@ namespace AtLightsEnd
         {
             if (!IsOpen || PlayerSession.CinematicPlaying) return;
             if (view.TryAdvancePage()) return;
-            if (++lineIndex >= conversation.lines.Length) End();
+            if (++lineIndex >= conversation.lines.Length)
+            {
+                if (conversation != hintThought)
+                {
+                    PlayerSession.CompleteDialogue(conversation);
+                    if (conversation.hintDialog && PlayerSession.RecordHint(conversation.hintText))
+                    {
+                        ShowHintThought();
+                        return;
+                    }
+                }
+                var completed = onCompleted;
+                ClearConversation();
+                completed?.Invoke();
+            }
             else
             {
                 PresentLine();
                 RoomVideoEvent.Trigger(conversation.lines[lineIndex].videoEventId);
             }
         }
+        private void ShowHintThought()
+        {
+            if (hintThought == null)
+            {
+                hintThought = ScriptableObject.CreateInstance<DialogueAsset>();
+                hintThought.hideFlags = HideFlags.HideAndDontSave;
+                hintThought.playerThoughts = true;
+                hintThought.lines = new[] { new DialogueAsset.Line() };
+            }
+
+            hintThought.lines[0].text = hintReactions[Random.Range(0, hintReactions.Length)];
+            conversation = hintThought;
+            actor = null;
+            requiresActor = false;
+            lineIndex = 0;
+            PresentLine();
+        }
+
         public void End()
         {
+            if (onCompleted == null) ClearConversation();
+        }
+
+        private void ClearConversation()
+        {
             if (!IsOpen) return;
+            onCompleted = null;
             conversation = null; actor = null;
             requiresActor = false;
             view.Hide();
@@ -138,8 +187,12 @@ namespace AtLightsEnd
         }
         private void OnDisable()
         {
-            End();
+            ClearConversation();
             if (hovered != null) hovered.SetHighlighted(false);
+        }
+        private void OnDestroy()
+        {
+            if (hintThought != null) Destroy(hintThought);
         }
         private static void ReadInput(out Vector2 position, out bool click, out bool next, out bool close)
         {

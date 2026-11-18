@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
   m_Name: Danica_Steve_Eve_Cafeteria_Day1_Visit2
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  hintDialog: 1
+  hintText: Search for the golden goose
   hasPortraitLayout: 1
   portraitLayout:
     twoPersonLeft:

@@ -25,6 +25,7 @@ namespace AtLightsEnd
         private DialogueAsset currentDialogue;
         private readonly System.Collections.Generic.Dictionary<Sprite, Rect> portraitBounds = new System.Collections.Generic.Dictionary<Sprite, Rect>();
         private GameObject root;
+        private GameObject closeButton;
         private UnityEngine.UI.RawImage left, right, middle;
         private TMP_Text speaker, body, counter, nextLabel;
         private DialogueAsset.Speaker speakingSide;
@@ -96,9 +97,10 @@ namespace AtLightsEnd
             nextLabel = Button("Next", paper.transform, "Weiter  ›", new Vector2(0.77f, 0.035f), new Vector2(0.97f, 0.23f), controller.Advance);
             paperBody = body; paperSpeaker = speaker; paperCounter = counter; paperNext = nextLabel;
             InitializeThoughtBubble(controller);
-            Button("Close", root.transform, "Schließen ×", new Vector2(0.81f, 0.92f), new Vector2(0.96f, 0.98f), controller.End);
+            closeButton = Button("Close", root.transform, "Schließen ×", new Vector2(0.81f, 0.92f), new Vector2(0.96f, 0.98f), controller.End).transform.parent.gameObject;
             root.SetActive(false);
         }
+        public void SetCloseVisible(bool visible) => closeButton.SetActive(visible);
         private void Update()
         {
             if (root == null || !root.activeSelf) return;

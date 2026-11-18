@@ -10,6 +10,8 @@ namespace AtLightsEnd
         [Tooltip("Unique per placed pickup; do not reuse this ID for a second copy.")]
         [SerializeField] private string pickupId;
         private string SessionId => gameObject.scene.path + ":" + pickupId;
+        public bool IsCollected => PlayerSession.HasCollected(SessionId);
+        internal bool CountsForProgress => enabled && item != null && !string.IsNullOrWhiteSpace(pickupId);
         [ContextMenu("Generate New Pickup ID")]
         private void GenerateNewPickupId()
         {

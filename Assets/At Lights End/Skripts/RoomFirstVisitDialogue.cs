@@ -9,7 +9,8 @@ namespace AtLightsEnd
         [SerializeField] private RoomNavigationController navigation;
         [SerializeField] private DialogueController dialogue;
 
-        private string VisitId(int roomIndex) => gameObject.scene.path + ":room:" + roomIndex;
+        internal static string VisitId(string scenePath, int roomIndex) => scenePath + ":room:" + PlayerSession.Day + ":" + roomIndex;
+        private string VisitId(int roomIndex) => VisitId(gameObject.scene.path, roomIndex);
         public bool HasPlayed(int roomIndex) => PlayerSession.HasVisited(VisitId(roomIndex));
 
         private void LateUpdate()

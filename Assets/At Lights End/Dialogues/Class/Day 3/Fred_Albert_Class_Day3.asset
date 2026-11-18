@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
+  m_Name: Fred_Albert_Class_Day3
+  m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  hintDialog: 0
+  hintText: 
+  hasPortraitLayout: 0
+  portraitLayout:
+    twoPersonLeft:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    twoPersonRight:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    threePersonLeft:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    threePersonMiddle:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    threePersonRight:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    twoPersonLeftScale: 1
+    twoPersonRightScale: 1
+    threePersonLeftScale: 1
+    threePersonMiddleScale: 1
+    threePersonRightScale: 1
+  leftCharacter: {fileID: 11400000, guid: 7ff3770d89d6fa84cb00f612d22cc128, type: 2}
+  rightCharacter: {fileID: 11400000, guid: b5e3f9ae8b94b0a43adf914e7e68cbb3, type: 2}
+  middleCharacter: {fileID: 0}
+  narrator: 0
+  playerThoughts: 0
+  lines:
+  - speaker: 0
+    kind: 0
+    text: '[Placeholder: Fred]'
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: '[Placeholder: Albert]'
+    videoEventId: 

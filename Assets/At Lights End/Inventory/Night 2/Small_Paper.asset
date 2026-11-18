@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f9c848863b754a48b132cb0fc946d07, type: 3}
+  m_Name: Small_Paper
+  m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.InventoryItem
+  itemId: a84e0766bcef4829bb4aa4960d020ad3
+  displayName: Small Paper
+  description: 
+  icon: {fileID: 0}
+  inspectionPrefab: {fileID: 2916546501040564269, guid: a3d8a6011bfd76e469465c3f6ec3a2a0, type: 3}

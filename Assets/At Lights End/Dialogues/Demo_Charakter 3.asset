@@ -12,12 +12,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
   m_Name: Demo_Charakter 3
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  hasPortraitLayout: 0
+  portraitLayout:
+    twoPersonLeft:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    twoPersonRight:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    threePersonLeft:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    threePersonMiddle:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    threePersonRight:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    twoPersonLeftScale: 1
+    twoPersonRightScale: 1
+    threePersonLeftScale: 1
+    threePersonMiddleScale: 1
+    threePersonRightScale: 1
   leftCharacter: {fileID: 11400000, guid: 71c3ef1e9d2bd3b4287e6d918c7ce5c1, type: 2}
   rightCharacter: {fileID: 11400000, guid: bc1dc93ed4a791843ab656b75ca34976, type: 2}
+  middleCharacter: {fileID: 0}
+  narrator: 0
+  playerThoughts: 0
   lines:
   - speaker: 0
+    kind: 0
     text: "Hast du hier etwas Ungew\xF6hnliches bemerkt?"
+    videoEventId: 
   - speaker: 1
+    kind: 0
     text: Vielleicht. Lass uns den Raum genauer ansehen.
+    videoEventId: 
   - speaker: 0
+    kind: 0
     text: Dann fangen wir hier an.
+    videoEventId: 

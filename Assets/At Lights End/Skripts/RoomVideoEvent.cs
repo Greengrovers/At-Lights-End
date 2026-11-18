@@ -11,6 +11,7 @@ namespace AtLightsEnd
     {
         [SerializeField] private string eventId = "cat-shadow";
         [SerializeField] private bool playOnFirstEntry = true;
+        [SerializeField, Min(1)] private int firstEntryDay = 1;
         [SerializeField, Min(0)] private int roomIndex = 1;
         [SerializeField] private RoomNavigationController navigation;
         [SerializeField] private VideoClip video;
@@ -66,7 +67,7 @@ namespace AtLightsEnd
 
         private void LateUpdate()
         {
-            if (!playOnFirstEntry || attemptedEntry || HasPlayed || PlayerSession.BlocksWorldInput ||
+            if (!playOnFirstEntry || PlayerSession.Day != firstEntryDay || attemptedEntry || HasPlayed || PlayerSession.BlocksWorldInput ||
                 navigation == null || navigation.IsTransitioning || navigation.ActiveRoomIndex != roomIndex) return;
             if (GameSceneContext.Current == null || !GameSceneContext.Current.CanExplore) return;
             attemptedEntry = true;

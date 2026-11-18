@@ -7,6 +7,10 @@ namespace AtLightsEnd
     [CreateAssetMenu(menuName = "At Lights End/Dialogue/Conversation", fileName = "New Conversation")]
     public sealed class DialogueAsset : ScriptableObject
     {
+        public bool hintDialog;
+        [TextArea(2, 6), Tooltip("Saved to the notebook after the last line if Hint Dialog is checked.")]
+        public string hintText;
+
         [Serializable] public sealed class PortraitLayout
         {
             public Rect twoPersonLeft, twoPersonRight, threePersonLeft, threePersonMiddle, threePersonRight;
