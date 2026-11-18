@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
   m_Name: Amelia_Emma_Cafeteria_Day2
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
-  hintDialog: 0
-  hintText: 
+  hintDialog: 1
+  hintText: The key with the green tag unlocks the boys' locker rooms.
   hasPortraitLayout: 0
   portraitLayout:
     twoPersonLeft:
@@ -59,9 +59,27 @@ MonoBehaviour:
   lines:
   - speaker: 0
     kind: 0
-    text: '[Placeholder: Amelia]'
+    text: "No Em, you don\u2019t understand, I have to find that key or Karl might
+      get into real trouble because of me."
     videoEventId: 
   - speaker: 1
     kind: 0
-    text: '[Placeholder: Emma]'
+    text: 'Easy there, Ames. You said he lent it to you so you could put that letter
+      into that one guys locker, right? Maybe you just accidentally threw it in there
+      with the letter? '
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "No, I know I locked the door to the guy\u2019s locker rooms afterwards
+      so that can\u2019t be. "
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: "Alright, then maybe we could ask around if anyone\u2019s seen it? You
+      said it had a green tag attached to it, right?"
+    videoEventId: 
+  - speaker: 0
+    kind: 1
+    text: "That must be the key I picked up yesterday. So it\u2019s for the boy\u2019s
+      locker rooms. "
     videoEventId: 

@@ -59,13 +59,33 @@ MonoBehaviour:
   lines:
   - speaker: 0
     kind: 0
-    text: '[Placeholder: Lacey]'
+    text: 'Hey, you think you can give me some money for food? Me and Lucas wanna
+      go to that new Italian place later with Bradley, but we already spent all our
+      money on snacks. '
     videoEventId: 
   - speaker: 2
     kind: 0
-    text: '[Placeholder: Fred]'
+    text: "Ah\u2026 But I don\u2019t have all that much money on me, and I need it
+      to buy a new notebook for my studysession\u2026"
     videoEventId: 
   - speaker: 1
     kind: 0
-    text: '[Placeholder: Lucas]'
+    text: "Oh come on, you don\u2019t really need a new notebook, do you, nerd? Just
+      do us that favour to help cheer our friend up. Maybe I\u2019ll even consider
+      letting you and your little boyfriend go for a week, huh? "
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: 'Yeah, surely, you would like that, right? Just give us your money. The
+      alternative is that we dunk your little nerd head in the toilet and just take
+      it anyway. '
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: "You\u2019re supposed to be smart, so surely you see the easier choice
+      to take here, right? "
+    videoEventId: 
+  - speaker: 2
+    kind: 0
+    text: "Ah, uhmm\u2026 A- alright\u2026 "
     videoEventId: 

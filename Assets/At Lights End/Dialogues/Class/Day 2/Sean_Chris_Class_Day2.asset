@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sean_Chris_Class_Day2
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
   hintDialog: 1
-  hintText: 'Always walz left '
+  hintText: Bradley keeps a spare key to his dorm room in his locker.
   hasPortraitLayout: 0
   portraitLayout:
     twoPersonLeft:
@@ -59,9 +59,34 @@ MonoBehaviour:
   lines:
   - speaker: 0
     kind: 0
-    text: '[Placeholder: Sean]'
+    text: "Maaan, how long could it possibly take to piss? I wanna continue playing
+      \talready!"
     videoEventId: 
   - speaker: 1
     kind: 0
-    text: '[Placeholder: Chris]'
+    text: 'Patience bro, you know Marc has that thingie with her bladder. '
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "Yeah yeah. Still annoying waiting for her to come back to play. At least
+      Jerkley isn\u2019t here today. Break's a lot more peaceful without him. I don\u2019t
+      even have to worry about my console getting trashed and can actually play without
+      looking over my shoulders. "
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: "Oh yeah true. You got a clue why he\u2019s not here today? Not that I'm
+      complaining, of course. "
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "I don\u2019t know the details but apparently he messed with the wrong
+      person, and his parents told him to come home immediately so they could properly
+      apologize to the kid. "
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: "Aahh, gotcha. Hey, if I were a lesser man I\u2019d suggest taking this
+      as an opportunity to make a mess off his dorm room. I heard he always keeps
+      a spare key in his locker for his friends. "
     videoEventId: 

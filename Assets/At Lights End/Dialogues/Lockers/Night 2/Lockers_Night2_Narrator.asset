@@ -59,5 +59,7 @@ MonoBehaviour:
   lines:
   - speaker: 0
     kind: 2
-    text: '[Placeholder: Lockers narration]'
+    text: 'You stand in front of the locker rooms and try to open the door with the
+      key you picked up. To your relief, the door easily opens up, allowing you to
+      step inside. Time to figure out this rooms secrets. '
     videoEventId: 

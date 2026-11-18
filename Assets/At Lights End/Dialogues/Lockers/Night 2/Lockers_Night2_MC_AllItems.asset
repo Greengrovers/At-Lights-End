@@ -59,5 +59,6 @@ MonoBehaviour:
   lines:
   - speaker: 0
     kind: 1
-    text: '[Placeholder: MC after finding all locker items]'
+    text: "All right, that should be everything. Let\u2019s take a look at that jerk\u2019s
+      room now."
     videoEventId: 

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
   m_Name: Narrator MC
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  hintDialog: 1
+  hintText: The ghost most likely died by suicide after being bullied severely.
   hasPortraitLayout: 1
   portraitLayout:
     twoPersonLeft:
@@ -57,18 +59,49 @@ MonoBehaviour:
   lines:
   - speaker: 0
     kind: 0
-    text: " -yeah and then I told him to buzz off. You should\u2019ve seen the look
-      on his face, it was priceless. "
-    videoEventId: 
-  - speaker: 1
-    kind: 2
-    text: ---
+    text: Well, now I just need to find out how those things are relevant, if they
+      even are.
     videoEventId: 
   - speaker: 0
     kind: 0
-    text: "Ahh alright gotcha, well have fun with that, I guess. At least you\u2019re
-      not the only one missing, that weirdo Bradley and his lackeys always pick on
-      isn\u2019t here either. Maybe finally took the hint and switched schools or
-      something. Was weirdly happy the past few days too, as if they\u2019d already
-      found a new place that\u2019d take \u2018em."
+    text: "Okay, so all clues point to one conclusion: that the ghost was most likely
+      a victim of bullying[NS8.1]. Maybe they couldn\u2019t take it anymore? I honestly
+      can\u2019t fault them for that, Bradley and his band of jerks are truly vicious.
+      Hell, I\u2019ve even thought about it before a few times too, but to really
+      go through with it.. "
+    videoEventId: 
+  - speaker: 1
+    kind: 2
+    text: 'This line of thinking only gives you a headache, so you quickly shake
+      your head to get rid of the unwanted distraction. '
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "Whatever, this isn\u2019t about me right now. What matters now is to find
+      out what happened. If my theory is correct, Bradley, Lacey and Lucas were probably
+      hounding that poor person like hell. Problem here is that pretty much everyone
+      in this school has had at least one unpleasant encounter with them.. But if
+      it got bad enough that they took their own life, then it must\u2019ve been
+      one of their particularly bad cases\u2026 "
+    videoEventId: 
+  - speaker: 1
+    kind: 2
+    text: "You try to think back to all the other people you can remember being especially
+      targeted, but find that you don\u2019t really remember their names. After all,
+      you had your own stuff to deal with and couldn\u2019t really afford the luxury
+      to worry too much about the others, not when it could potentially get you into
+      even more trouble. Thus, the first people that come to mind are the people
+      you heard about today."
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "Hmm. So right now, the people on my list are that guy one year under us
+      and.. what was her name? Ah, yeah, Veronica. They both had shit happen to them,
+      and they weren\u2019t in school, which means they could potentially be the
+      ghost..."
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "I\u2019ll see if I can find out more about this tomorrow, but for now
+      my head is swimming from all that thinking. Let\u2019s go get some sleep."
     videoEventId: 

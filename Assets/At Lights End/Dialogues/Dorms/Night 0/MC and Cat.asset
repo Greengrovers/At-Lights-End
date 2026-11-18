@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
   m_Name: MC and Cat
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  hintDialog: 0
+  hintText: 
   hasPortraitLayout: 1
   portraitLayout:
     twoPersonLeft:
@@ -50,25 +52,208 @@ MonoBehaviour:
     threePersonMiddleScale: 1.053
     threePersonRightScale: 1.094
   leftCharacter: {fileID: 11400000, guid: 35b3862c7a99b7943befeb5d72936a30, type: 2}
-  rightCharacter: {fileID: 11400000, guid: edef32ed334b61d4d95629e4f36b237e, type: 2}
-  middleCharacter: {fileID: 11400000, guid: 46fc80e9d423d604bbd186abe15d6617, type: 2}
+  rightCharacter: {fileID: 11400000, guid: 46fc80e9d423d604bbd186abe15d6617, type: 2}
+  middleCharacter: {fileID: 11400000, guid: edef32ed334b61d4d95629e4f36b237e, type: 2}
   narrator: 0
   playerThoughts: 0
   lines:
   - speaker: 0
-    kind: 0
-    text: " -yeah and then I told him to buzz off. You should\u2019ve seen the look
-      on his face, it was priceless. "
+    kind: 2
+    text: 'The first thing you notice as you enter your room is that the window is
+      open. You cannot recall leaving it open when you left this morning, so the
+      chilly breeze entering the room catches you by surprise. '
     videoEventId: 
-  - speaker: 1
-    kind: 0
-    text: ---
+  - speaker: 0
+    kind: 2
+    text: "The second \u2013 and even more baffling \u2013 thing you notice is that
+      there is a black cat sitting on your desk by the window. You do not own a cat.
+      Your room is on the second floor. "
     videoEventId: 
   - speaker: 0
     kind: 0
-    text: "Ahh alright gotcha, well have fun with that, I guess. At least you\u2019re
-      not the only one missing, that weirdo Bradley and his lackeys always pick on
-      isn\u2019t here either. Maybe finally took the hint and switched schools or
-      something. Was weirdly happy the past few days too, as if they\u2019d already
-      found a new place that\u2019d take \u2018em."
+    text: 'What the-? How did you even get in here Kitty? '
+    videoEventId: 
+  - speaker: 0
+    kind: 2
+    text: "Gingerly, you approach the cat like one would a dangerous wild animal.
+      The cat does not move, only continues to stare at you with unimpressed feline
+      eyes. Once you get close enough you notice a sheet of paper under its paw.
+      Letting out a curious noise, you slowly reach out a hand, grasping the edge
+      of the foreign note and carefully attempt to dislodge it from underneath the
+      cat\u2019s paw. "
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: I do not recall giving you permission to touch, human.
+    videoEventId: 
+  - speaker: 0
+    kind: 2
+    text: You rear back with an undignified shriek at the sudden voice, whipping
+      around to see who entered your room without your notice, only to find no one
+      there. The room is as empty as ever, the only living beings inside it were
+      you and the cat. You let out a quiet breath, shaking your head. Maybe all that
+      sleep was messing with you.
+    videoEventId: 
+  - speaker: 2
+    kind: 0
+    text: There really is no need for such dramatics. You did not even hear what
+      this one had to say yet.
+    videoEventId: 
+  - speaker: 0
+    kind: 2
+    text: 'You once again look around the room with wild eyes. You fear your neck
+      is going to snap because of the quick motions. '
+    videoEventId: 
+  - speaker: 2
+    kind: 0
+    text: 'Over here, child. Right in front of you. '
+    videoEventId: 
+  - speaker: 0
+    kind: 2
+    text: The voice had taken on an exasperated tone, and you slowly turn your sight
+      toward it to... the cat? Indeed, the cat sitting on your desk in front of you
+      nods its head as if satisfied. What the fuck??
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: Good. Now, as this one was about to say before you had your little freak
+      out, this one has-
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "This \u2018little freakout\u2019 is far from over, thank you! How the
+      fuck are you talking? Talking cats don\u2019t exist! *muble* No wait, maybe
+      it\u2019s one of those lifelike robots? Is this a prank? *loudly* Haha, good
+      one guys! You really got me! You can come out now! \u2026Guys?"
+    videoEventId: 
+  - speaker: 0
+    kind: 2
+    text: "Only awkward silence follows your words, the cats sleek tail flickering
+      in irritation. If it is a robot, then the people that built it surely have
+      an eye for detail and realism. A growl of reprimand rumbled out of the cat,
+      and you flinch back slightly, afraid it\u2019s going to try and scratch you."
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: "You keep on interrupting me. I do not condone disrespect like that; do
+      not let it happen again. You claim that talking cats don\u2019t exist, yet
+      here I am sitting before you."
+    videoEventId: 
+  - speaker: 0
+    kind: 2
+    text: "The cat\u2019s eyes sharpen into an expression of slyness"
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: "Hmm, if I\u2019d known you are this doubting of the supernatural, I would
+      have found another human to quest with aiding this ghost. Truly a shame.. But
+      this one supposes she will have to search for another."
+    videoEventId: 
+  - speaker: 0
+    kind: 2
+    text: "The word \u2018ghost\u2019 makes you freeze where you stand. A ghost?
+      An actual real life ghost? As in dead soul, trapped and unable to move on ghost?
+      That was.. so cool! A ghosthunting quest!- A chuckle interrupts your train
+      of thought, and as you look at the feline, it looked like the cat that got
+      the cream. Ah, had you said all that out loud?"
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: Ah yes, this is more the reaction this one expected when she heard that
+      you are fond of ghost stories. But well, you have already made it clear that
+      you do not wish to lend your aid in this matter, so this one will leave now.
+    videoEventId: 
+  - speaker: 0
+    kind: 2
+    text: The cat makes a move to get up, so you quickly interrupt her with a desperate
+      half-shout.
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: No no no, wait! I want to do it! Me! Ill help you!
+    videoEventId: 
+  - speaker: 0
+    kind: 2
+    text: 'A sigh of relief escapes your lips as the cat sits back down on her haunches.
+      The paw resting on the piece of paper finally moves off of it, and she nods
+      to it, as if signalling you to take it. '
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: 'Very well, then this one shall explain the matter to you. The most condensed
+      version of this story would be that someone died in this school. Their body
+      has not been discovered yet, so the other residents of this school do not know. '
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: 'Very well, then this one shall explain the matter to you. The most condensed
+      version of this story would be that someone died in this school. Their body
+      has not been discovered yet, so the other residents of this school do not know. '
+    videoEventId: 
+  - speaker: 0
+    kind: 2
+    text: 'That certainly came as a shock. Of course, you knew that the whole concept
+      of a ghost entailed someone dying, but hearing that there is supposedly an
+      actual corpse hidden somewhere in school sends an icy shiver down your spine.
+      If the cat noticed your moment of anxiety, she chose not to mention it. '
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: "The problem is \u2013 as I\u2019m sure you can already guess \u2013 that
+      their soul got stuck here in the mortal plane. Perhaps it is an unfulfilled
+      wish, perhaps it is regret or hatred that is keeping them chained to this school.
+      Or perhaps they simply do not want to believe that they are dead. "
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: 'Whatever it is, it is keeping them from moving on. That is where you come
+      into play. You have to help this lost soul move on, for if they do not make
+      peace with themselves within three days, they will be trapped here for all
+      of eternity. '
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "But how am I supposed to do that? I don\u2019t even know who died, let
+      alone what kinda problems they had. "
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: 'This one is afraid that that is for you to figure out, little one. This
+      cat cannot interfere beyond her own jurisdiction. She can only guide you in
+      the right direction. '
+    videoEventId: 
+  - speaker: 0
+    kind: 2
+    text: The cat looks up at the moon hanging high in the sky, the cool light seeming
+      to give her black fur an almost otherworldly glow. She stood up and walked
+      the few steps over to the window.
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: This one must go. Everything I just explained to you is also written on
+      this note. I recommend you tuck into a notebook so that you may keep track
+      of all the clues and important information you have gathered. Shall you ever
+      need me, I will be there. Good luck, child.
+    videoEventId: 
+  - speaker: 0
+    kind: 2
+    text: "You look down to pick up the note from the desk, and when you raise your
+      eyes again, the dark cat is gone. You stand in silence for a few minutes, trying
+      to comprehend what just happened. Eventually, you wordlessly pick up an empty
+      notebook from your desk and place the cat\u2019s piece of paper inside it. "
+    videoEventId: 
+  - speaker: 0
+    kind: 2
+    text: "You still have no idea where to even start looking for a ghost, so maybe
+      it was time to think of a plan. After working it over in your brain time and
+      time again, you finally decide to try and find clues during the day. After
+      all, even if the students don\u2019t yet know of the death, surely someone
+      would have noticed at least something? And at night, you will sneak back into
+      the school to investigate the building itself. Well, that seemed like a sound
+      plan, to your ears. "
+    videoEventId: 
+  - speaker: 0
+    kind: 2
+    text: 'Satisfied, you nod to yourself, before finally getting ready to sleep.
+      It will be a important day tomorrow, after all.  '
     videoEventId: 

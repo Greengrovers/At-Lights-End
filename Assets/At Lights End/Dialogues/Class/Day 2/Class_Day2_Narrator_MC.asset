@@ -59,9 +59,15 @@ MonoBehaviour:
   lines:
   - speaker: 0
     kind: 2
-    text: '[Placeholder: Classroom Day 2 narration]'
+    text: 'The new day had come quickly, and the classes passed by just as fast.
+      Once again you find yourself surrounded by chattering students. '
     videoEventId: 
   - speaker: 0
     kind: 1
-    text: '[Placeholder: Main Character thought]'
+    text: "Alright, let\u2019s see if we can find out anything useful. "
+    videoEventId: 
+  - speaker: 0
+    kind: 2
+    text: 'You throw subtle glances around yourself, trying to find a conversation
+      that looks interesting. '
     videoEventId: 

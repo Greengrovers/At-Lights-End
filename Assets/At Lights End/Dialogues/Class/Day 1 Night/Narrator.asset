@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
   m_Name: Narrator
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  hintDialog: 0
+  hintText: 
   hasPortraitLayout: 1
   portraitLayout:
     twoPersonLeft:
@@ -56,19 +58,18 @@ MonoBehaviour:
   playerThoughts: 0
   lines:
   - speaker: 0
-    kind: 0
-    text: " -yeah and then I told him to buzz off. You should\u2019ve seen the look
-      on his face, it was priceless. "
+    kind: 2
+    text: 'The classroom is once again only illuminated by the unusually bright moon.
+      You stand there and try to think of a structured way to go at this. Eventually,
+      you just give up and decide to just search the class for some clues. Yeah,
+      best to start here and then make your way to the cafeteria. '
     videoEventId: 
   - speaker: 1
     kind: 2
-    text: ---
-    videoEventId: 
-  - speaker: 0
-    kind: 0
-    text: "Ahh alright gotcha, well have fun with that, I guess. At least you\u2019re
-      not the only one missing, that weirdo Bradley and his lackeys always pick on
-      isn\u2019t here either. Maybe finally took the hint and switched schools or
-      something. Was weirdly happy the past few days too, as if they\u2019d already
-      found a new place that\u2019d take \u2018em."
+    text: "While you look around the classroom, you notice the arrival of a sleek
+      black cat that wasn\u2019t there before. She only nods at you and then continues
+      to doze in a loafing position. Right, maybe you could ask her for help if you
+      find yourself stuck. Alright, then lets get this started! Let\u2019s check
+      the room and then cross-reference with the clues you\u2019ve written down in
+      your notebook."
     videoEventId: 

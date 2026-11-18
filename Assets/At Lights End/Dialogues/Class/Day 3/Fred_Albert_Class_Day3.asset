@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
   m_Name: Fred_Albert_Class_Day3
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
-  hintDialog: 0
-  hintText: 
+  hintDialog: 1
+  hintText: A universal key to the storage and electrical rooms has gone missing.
+    Maybe you can try and find it somewhere.
   hasPortraitLayout: 0
   portraitLayout:
     twoPersonLeft:
@@ -59,9 +60,21 @@ MonoBehaviour:
   lines:
   - speaker: 0
     kind: 0
-    text: '[Placeholder: Fred]'
+    text: "Alright, 2 o\u2019clock sounds good yeah. We can go to one of the study
+      rooms, though we need to be gone before the janitor comes to kick us out. I
+      heard he\u2019s in a pretty bad mood these past few days. "
     videoEventId: 
   - speaker: 1
     kind: 0
-    text: '[Placeholder: Albert]'
+    text: 'Really? I thought he was always pretty nice. What happened? '
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: 'Apparently he misplaced the universal key for the storage cabinets and
+      electrical rooms. Which, yknow, is kinda important. So the director gave him
+      quite the scolding. '
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: '*winces* Oh man, that sucks.'
     videoEventId: 

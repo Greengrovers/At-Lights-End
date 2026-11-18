@@ -59,9 +59,17 @@ MonoBehaviour:
   lines:
   - speaker: 0
     kind: 0
-    text: '[Placeholder: Eve]'
+    text: "Yeah, don\u2019t worry I\u2019ll come over right away after school. I
+      don\u2019t even understand why I have to be here when I should be out there
+      helping you search. "
     videoEventId: 
   - speaker: 1
     kind: 0
-    text: '[Placeholder: Person on the phone]'
+    text: ...
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "Don\u2019t give me that, your attendance is even worse than mine! And
+      I don\u2019t care about that anyway, not when Veronica is still not answering
+      her door. Just- keep me updated, okay? "
     videoEventId: 

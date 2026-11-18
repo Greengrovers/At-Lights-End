@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
   m_Name: Mc and Teacher
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  hintDialog: 0
+  hintText: 
   hasPortraitLayout: 1
   portraitLayout:
     twoPersonLeft:
@@ -57,18 +59,16 @@ MonoBehaviour:
   lines:
   - speaker: 0
     kind: 0
-    text: " -yeah and then I told him to buzz off. You should\u2019ve seen the look
-      on his face, it was priceless. "
+    text: Okay students, please make sure to finish your personal rep sheets by the
+      next lesson we have together, alright? See you next week!
     videoEventId: 
   - speaker: 1
-    kind: 0
-    text: ---
+    kind: 1
+    text: "Glad that\u2019s over. It\u2019s lunch break now, but I\u2019m not really
+      hungry, so I think I\u2019m just gonna rest for now."
     videoEventId: 
   - speaker: 0
-    kind: 0
-    text: "Ahh alright gotcha, well have fun with that, I guess. At least you\u2019re
-      not the only one missing, that weirdo Bradley and his lackeys always pick on
-      isn\u2019t here either. Maybe finally took the hint and switched schools or
-      something. Was weirdly happy the past few days too, as if they\u2019d already
-      found a new place that\u2019d take \u2018em."
+    kind: 2
+    text: 'With that, you put your head onto your crossed arms and close your eyes,
+      intending to just let the break pass in peace. '
     videoEventId: 

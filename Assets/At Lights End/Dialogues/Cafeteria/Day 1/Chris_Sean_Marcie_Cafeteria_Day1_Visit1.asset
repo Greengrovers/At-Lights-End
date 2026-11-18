@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
   m_Name: Chris_Sean_Marcie_Cafeteria_Day1_Visit1
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  hintDialog: 1
+  hintText: Lucas. Part of Bradley's band of bullies.
   hasPortraitLayout: 1
   portraitLayout:
     twoPersonLeft:
@@ -68,8 +70,8 @@ MonoBehaviour:
     videoEventId: 
   - speaker: 1
     kind: 0
-    text: "You just can\u2019t Eugh, never say \u2018lol\u2019 out loud ever again
-      dude, that\u2019s just horrible. "
+    text: "Eugh, never say \u2018lol\u2019 out loud ever again dude, that\u2019s
+      just horrible. "
     videoEventId: 
   - speaker: 2
     kind: 0

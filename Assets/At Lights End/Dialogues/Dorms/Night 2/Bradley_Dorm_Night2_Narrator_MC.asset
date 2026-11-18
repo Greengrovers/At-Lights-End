@@ -59,9 +59,13 @@ MonoBehaviour:
   lines:
   - speaker: 0
     kind: 2
-    text: '[Placeholder: Bradley dorm narration]'
+    text: "With the key you found in the locker you open up the room. Before you
+      lies a regular dorm room. You don\u2019t know why, but perhaps you had expected
+      something different. More intimidating. After all, this is the guy who made
+      your and other people\u2019s lives so miserable, so to see it look so normal
+      was a bit sobering. "
     videoEventId: 
   - speaker: 0
     kind: 1
-    text: '[Placeholder: MC thought]'
+    text: "Alright asshole. Let\u2019s see what you\u2019re hiding in here."
     videoEventId: 

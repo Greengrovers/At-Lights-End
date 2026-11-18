@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: Danica_Steve_Eve_Cafeteria_Day1_Visit2
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
   hintDialog: 1
-  hintText: Search for the golden goose
+  hintText: 'Lacey. The third person of Bradley''s bully friends.
+
+    The fight
+    in the cafeteria was between Dee and Veronica. Veronica is absent today and isn''t
+    answering her phone.'
   hasPortraitLayout: 1
   portraitLayout:
     twoPersonLeft:
@@ -107,7 +111,9 @@ MonoBehaviour:
     videoEventId: 
   - speaker: 1
     kind: 0
-    text: ": WHAT?! That\u2019s insane! That could\u2019ve destroyed her future!"
+    text: "Apparently Veronica figured so too, she\u2019s only been to school to
+      give Dee that beatdown, and after that she disappeared. Haven\u2019t seen her
+      since yesterday. She\u2019s not answering her phone either. "
     videoEventId: 
   - speaker: 2
     kind: 0

@@ -59,5 +59,42 @@ MonoBehaviour:
   lines:
   - speaker: 0
     kind: 2
-    text: '[Placeholder: Narrator after finding all dorm items]'
+    text: 'You stand there in silence for quite a while, brain struggling to comprehend
+      what you just learned. It has never occurred to you that Bradley may have his
+      own problems. He always seemed like a guy who treats other people like dirt
+      just because he can, purely out of enjoyment for being an asshole. Never once
+      did you think that maybe it was some sort of fucked up coping mechanism for
+      the shit going on in his own life. '
+    videoEventId: 
+  - speaker: 0
+    kind: 2
+    text: Not that it made any difference. Even with his own life being shit, that
+      still gives him no right to make everyone else a victim of his misery. Though
+      you can at least somewhat understand his process of thinking, you still resent
+      him deeply. Maybe even more than before.
+    videoEventId: 
+  - speaker: 0
+    kind: 2
+    text: "The more you try to calm down, the more you spiral. So, all you had to
+      endure was just because Bradley couldn\u2019t get help like every other normal
+      fucking human being?? Just because his home was shit, you and others were humiliated
+      and pushed down time and time again in a sick attempt to regain control of
+      his stupid life?? "
+    videoEventId: 
+  - speaker: 0
+    kind: 2
+    text: 'A thundering headache was beginning to build behind your eyes, your stomach
+      rolling with nausea from how intense your emotions are. A thunderous noise
+      abruptly snaps you out of your rage, a few books had fallen off the desk and
+      slammed onto the ground. '
+    videoEventId: 
+  - speaker: 0
+    kind: 2
+    text: "Right. The ghost. You could cry angrily later, for now you have priorities
+      to sort out. At least this sign of life from the ghost could be taken as a
+      sign that you were on the right track, that your deduction of suicide due to
+      Bradley\u2019s bullying had something to back it up. You wipe the tears \u2013
+      you hadn\u2019t even noticed you started crying \u2013 from your cheeks and
+      march to your own dorm. It was time to put an end to this tomorrow, to finally
+      let this poor soul rest in peace. "
     videoEventId: 

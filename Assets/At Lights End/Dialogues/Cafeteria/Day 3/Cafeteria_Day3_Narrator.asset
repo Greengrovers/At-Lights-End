@@ -59,5 +59,6 @@ MonoBehaviour:
   lines:
   - speaker: 0
     kind: 2
-    text: '[Placeholder: Cafeteria narration]'
+    text: "You look around the cafeteria carefully, and sigh in relief when you can\u2019t
+      see Bradley and his friends. Alright, then let\u2019s do this."
     videoEventId: 

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
   m_Name: Danica_Class_Day1_Phone
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  hintDialog: 0
+  hintText: 
   hasPortraitLayout: 1
   portraitLayout:
     twoPersonLeft:

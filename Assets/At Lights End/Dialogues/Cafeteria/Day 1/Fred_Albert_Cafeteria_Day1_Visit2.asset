@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
   m_Name: Fred_Albert_Cafeteria_Day1_Visit2
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  hintDialog: 0
+  hintText: 
   hasPortraitLayout: 1
   portraitLayout:
     twoPersonLeft:
@@ -57,15 +59,7 @@ MonoBehaviour:
   lines:
   - speaker: 0
     kind: 0
-    text: Aww man, they put eggs in my sandwich. I told them I wanted it without
-    videoEventId: 
-  - speaker: 1
-    kind: 0
-    text: "You can just give them to me; I\u2019ll eat them if you won\u2019t."
-    videoEventId: 
-  - speaker: 0
-    kind: 0
-    text: "You can just give them to me; I\u2019ll eat them if you won\u2019t."
+    text: Aww man, they put eggs in my sandwich. I told them I wanted it without.
     videoEventId: 
   - speaker: 1
     kind: 0
@@ -79,7 +73,7 @@ MonoBehaviour:
     videoEventId: 
   - speaker: 1
     kind: 0
-    text: "I\u2019ve got 120.39"
+    text: "I\u2019ve got 120.39."
     videoEventId: 
   - speaker: 0
     kind: 0

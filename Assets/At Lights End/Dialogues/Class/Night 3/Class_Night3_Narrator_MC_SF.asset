@@ -51,21 +51,15 @@ MonoBehaviour:
     threePersonLeftScale: 1
     threePersonMiddleScale: 1
     threePersonRightScale: 1
-  leftCharacter: {fileID: 0}
+  leftCharacter: {fileID: 11400000, guid: 35b3862c7a99b7943befeb5d72936a30, type: 2}
   rightCharacter: {fileID: 11400000, guid: c658592430ef2754798f876d1900661d, type: 2}
   middleCharacter: {fileID: 0}
   narrator: 0
   playerThoughts: 0
   lines:
   - speaker: 0
-    kind: 2
-    text: '[Placeholder: Night 3 classroom narration]'
-    videoEventId: 
-  - speaker: 0
     kind: 1
-    text: '[Placeholder: MC thought]'
-    videoEventId: 
-  - speaker: 1
-    kind: 0
-    text: '[Placeholder: SF]'
+    text: "That must be the universal key there were talking about. Why is it here
+      though? Well, whatever. Let\u2019s just head up to the second floor and investigate
+      that smell."
     videoEventId: 

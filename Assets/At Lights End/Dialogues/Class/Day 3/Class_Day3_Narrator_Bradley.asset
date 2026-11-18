@@ -51,17 +51,45 @@ MonoBehaviour:
     threePersonLeftScale: 1
     threePersonMiddleScale: 1
     threePersonRightScale: 1
-  leftCharacter: {fileID: 0}
-  rightCharacter: {fileID: 11400000, guid: ac6a99fa4b652a94baca4e530feb73a0, type: 2}
+  leftCharacter: {fileID: 11400000, guid: ac6a99fa4b652a94baca4e530feb73a0, type: 2}
+  rightCharacter: {fileID: 0}
   middleCharacter: {fileID: 0}
   narrator: 0
   playerThoughts: 0
   lines:
-  - speaker: 0
+  - speaker: 1
     kind: 2
-    text: '[Placeholder: Classroom narration]'
+    text: "You hadn\u2019t even bothered to pay attention in class, just sat there
+      to stew in your thoughts. Your eyes were trained onto the back of Bradley\u2019s
+      head, trying to set him on fire with your eyes. He came into school again today,
+      sporting a nasty bruise on his cheek. You couldn\u2019t help the fleeting feeling
+      of gratification as you spotted it, until you realized that it made you sound
+      almost like him, being happy that someone else is miserable as well. An unwell
+      feeling settled into your gut, only lifting once the bell rang. "
+    videoEventId: 
+  - speaker: 1
+    kind: 2
+    text: 'Most students immediately leave for the cafeteria, talking amongst themselves.
+      You stay rooted in your spot as Bradley walks over to you. He lifts one of
+      his hands and pours the rest of his chocolate milk onto your desk. '
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: What, you got something to say?
     videoEventId: 
   - speaker: 1
     kind: 0
-    text: '[Placeholder: Bradley]'
+    text: You flinch at his snapping voice but realize that he is looking at another
+      student a few desks over, daring him to say something to defend his classmate.
+      The student just quickly shakes his head and flees.
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "*snorts* That\u2019s what I thought. Fucking loser. "
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: 'With that he also leaves the room, most likely to look for Lacey and Lucas.
+      Your hands are shaking from leftover adrenaline even minutes later. Once your
+      heart has somewhat settled again, you finally stand up. '
     videoEventId: 

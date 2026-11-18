@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
   m_Name: Ema_Amilia_Class_Day1
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
+  hintDialog: 1
+  hintText: 'Bradley. The biggest bully in school. '
   hasPortraitLayout: 1
   portraitLayout:
     twoPersonLeft:

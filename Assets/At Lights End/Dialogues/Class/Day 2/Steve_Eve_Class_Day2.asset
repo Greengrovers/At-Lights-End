@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1bf8886989a3f4a823cf7cddae0444, type: 3}
   m_Name: Steve_Eve_Class_Day2
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
-  hintDialog: 0
-  hintText: 
+  hintDialog: 1
+  hintText: Veronica is still not answering her phone.
   hasPortraitLayout: 0
   portraitLayout:
     twoPersonLeft:
@@ -57,11 +57,26 @@ MonoBehaviour:
   narrator: 0
   playerThoughts: 0
   lines:
+  - speaker: 1
+    kind: 0
+    text: "Hey, don\u2019t forget that mom isn\u2019t home tonight, so we\u2019re
+      gonna have to cook our own dinner. What are you feeling?"
+    videoEventId: 
   - speaker: 0
     kind: 0
-    text: '[Placeholder: Steve]'
+    text: "Burgers? We could stop by at Dante\u2019s on the way home. Maybe we could
+      grab one more and visit Veronica to check on her."
     videoEventId: 
   - speaker: 1
     kind: 0
-    text: '[Placeholder: Eve]'
+    text: "She hasn\u2019t been answering you either? "
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: Nope, not a peep.
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: "Yeah, then let\u2019s go to her afterwards. Do you know what kinda burger
+      she likes? She\u2019s vegetarian right?"
     videoEventId: 

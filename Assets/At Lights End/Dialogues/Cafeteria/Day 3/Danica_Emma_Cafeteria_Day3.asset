@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Danica_Emma_Cafeteria_Day3
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueAsset
   hintDialog: 1
-  hintText: Water is green
+  hintText: There's a weird smell in the hallway of the second floor.
   hasPortraitLayout: 0
   portraitLayout:
     twoPersonLeft:
@@ -59,9 +59,25 @@ MonoBehaviour:
   lines:
   - speaker: 0
     kind: 0
-    text: '[Placeholder: Danica]'
+    text: "Yeah girl hold on a second, I\u2019ve gotta go reapply my lipstick and
+      take a leak real quick. "
     videoEventId: 
   - speaker: 1
     kind: 0
-    text: '[Placeholder: Emma]'
+    text: "Alright. But I\u2019d advise you to go to the bathroom on the third floor. "
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "What? Why? That\u2019s so many stairs!"
+    videoEventId: 
+  - speaker: 1
+    kind: 0
+    text: "Some girl vomited all over on the first floor toilets. And there\u2019s
+      a weird smell in the hallway on the second floor, so I\u2019d avoid that one
+      as well."
+    videoEventId: 
+  - speaker: 0
+    kind: 0
+    text: "Tch. It\u2019s always something in this school. Can we not have one normal
+      day where everything works as it should? "
     videoEventId: 
