@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AtLightsEnd.DialogueCharacter
   displayName: Lucas
   isPlayerCharacter: 0
-  portrait: {fileID: -5616021209200547710, guid: 6f6359e86f741e9449fe0423ebb01112, type: 3}
+  portrait: {fileID: -8646010648644020976, guid: b94400e27436f46408ea090c9f8bd3dd, type: 3}
   autoPortraitRegion: 1
   closeUpBottomCrop: 0.3
   portraitRegion:
