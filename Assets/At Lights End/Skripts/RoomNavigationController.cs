@@ -250,12 +250,17 @@ namespace AtLightsEnd
 
         private void CalculateFraming(out Vector3 position, out float size)
         {
-            Bounds bounds = rooms[ActiveRoomIndex].background.bounds;
-            Quaternion inverse = Quaternion.Inverse(roomCamera.transform.rotation);
+            CalculateFraming(rooms[ActiveRoomIndex].background, roomCamera, out position, out size);
+        }
+
+        public void CalculateFraming(Renderer background, Camera camera, out Vector3 position, out float size)
+        {
+            Bounds bounds = background.bounds;
+            Quaternion inverse = Quaternion.Inverse(camera.transform.rotation);
             Vector3 extents = bounds.extents;
             float maxX = 0, maxY = 0, distance = cameraDistance;
-            float aspect = Mathf.Max(0.01f, roomCamera.aspect);
-            float tanVertical = Mathf.Tan(roomCamera.fieldOfView * Mathf.Deg2Rad * 0.5f);
+            float aspect = Mathf.Max(0.01f, camera.aspect);
+            float tanVertical = Mathf.Tan(camera.fieldOfView * Mathf.Deg2Rad * 0.5f);
             for (int x = -1; x <= 1; x += 2)
             for (int y = -1; y <= 1; y += 2)
             for (int z = -1; z <= 1; z += 2)
@@ -263,15 +268,15 @@ namespace AtLightsEnd
                 Vector3 local = inverse * Vector3.Scale(extents, new Vector3(x, y, z));
                 maxX = Mathf.Max(maxX, Mathf.Abs(local.x));
                 maxY = Mathf.Max(maxY, Mathf.Abs(local.y));
-                distance = Mathf.Max(distance, -local.z + roomCamera.nearClipPlane + 0.5f);
-                if (!roomCamera.orthographic)
+                distance = Mathf.Max(distance, -local.z + camera.nearClipPlane + 0.5f);
+                if (!camera.orthographic)
                 {
                     distance = Mathf.Max(distance, Mathf.Abs(local.y) * framingPadding / tanVertical - local.z);
                     distance = Mathf.Max(distance, Mathf.Abs(local.x) * framingPadding / (tanVertical * aspect) - local.z);
                 }
             }
             size = Mathf.Max(0.01f, maxY, maxX / aspect) * framingPadding;
-            position = bounds.center - roomCamera.transform.forward * distance;
+            position = bounds.center - camera.transform.forward * distance;
         }
 
         private void ApplyFraming()
